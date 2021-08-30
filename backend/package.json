@@ -1,4 +1,21 @@
 {
+  "name": "fwe-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose --coverage --forceExit --runInBand",
+    "test:watch": "jest --verbose --watchAll --runInBand",
+    "test:ci": "jest --verbose --coverage --ci --forceExit --detectOpenHandles --runInBand",
+    "dev": "tsc-watch --onSuccess 'node --inspect=0.0.0.0:9229 ./dist/src/index'",
+    "start": "tsc-watch --outDir ./dist --onSuccess 'node ./dist/src/index.js'",
+    "build": "tsc -b .",
+    "lint": "tslint --project .",
+    "typeorm": "node ./node_modules/typeorm/cli.js",
+    "fixtures": "npx fixtures ./src/fixture --config ormconfig.js"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "class-validator": "^0.13.1",
