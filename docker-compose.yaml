@@ -16,5 +16,22 @@ services:
     volumes:
       - my-datavolume:/var/lib/mysql
 
+  backend:
+    working_dir: /var/app/backend
+    image: node:16
+    environment: 
+      PORT: 2000
+      DBHOST: db
+      DBPORT: 3306
+      DBUSER: test
+      DBPASSWORD: test
+      DBDATABASE: lernen-db
+      NODE_ENV: development
+    ports:
+      - 2000:2000
+    command: npm start
+    volumes:
+      - ./backend:/var/app/backend
+
 volumes:
   my-datavolume:

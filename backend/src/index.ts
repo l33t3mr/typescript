@@ -20,7 +20,7 @@ export const startServer = async () => {
     app.use(bodyParser.json());
     app.use(morgan('combined'));
     app.get('/', (req, res) => {
-      res.send("Hello World");
+      res.send("Hello World!");
     })
 
     const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
