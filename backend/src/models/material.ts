@@ -1,38 +1,29 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, OneToOne, JoinColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
 import * as yup from 'yup';
+import { Professor } from './professor';
+import { MaterialContent } from './materialContent';
 
-export const materialSchema = yup.object().shape({
-  type: yup.string().required(),
-  // tslint:disable-next-line:object-literal-sort-keys
-  content: yup.string().required(),
-  path: yup.string().required(),
-  // tslint:disable-next-line:only-arrow-functions
-  createdAt: yup.date().default(function () {
-    return new Date();
-  }),
-  // tslint:disable-next-line:only-arrow-functions
-  modifiedAt: yup.date().default(function () {
-    return new Date();
-  }),
-});
+export const materialSchema = yup.object().shape(
+  {
+    type: yup.string().required(),
+    name: yup.string().required(),
+
+  }
+);
 
 @Entity()
 export class Material {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  @OneToOne(type => MaterialContent, { primary: true, cascade: ["update", "insert", "remove"] })
+  @JoinColumn({ name: "contentID" })
+  id!: MaterialContent;
 
-  @Column()
+  @Column({ nullable: false })
   type!: string;
 
-  @Column()
-  content!: string;
+  @Column({ nullable: false })
+  name!: string;
 
-  @Column()
-  path!: string;
-
-  @CreateDateColumn()
-  createdAt: string;
-
-  @UpdateDateColumn()
-  modifiedAt: string;
+  @ManyToOne(() => Professor, professor => professor.materials, {nullable: false})
+  @JoinColumn({ name: "profID" })
+  professor: Professor;
 }

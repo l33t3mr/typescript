@@ -1,0 +1,12 @@
+entity: Course
+items:
+  testCourse:
+    name: "fwe"
+    startsOn: "01.09.2021 08:30"
+    endsOn: "09.09.2021 08:30"
+    email: "test@test.test"
+    maxCapacity: "40"
+    professor: '@testProfessor'
+    materials: '@testMaterial'
+    student: '@testStudent'
+

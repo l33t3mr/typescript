@@ -1,0 +1,6 @@
+entity: MaterialContent
+items:
+  testMaterialContent:
+    content: "asdasdasdasdasdsaasdas"
+    path: "./fixtures/Test.pdf"
+    
