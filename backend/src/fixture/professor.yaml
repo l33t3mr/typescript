@@ -1,10 +1,10 @@
-entity: Joke
+entity: Professor
 items:
-  devJoke:
-    author: "amr"
-    category: "culture"
-    source: "myMind"
-    title: "DevJoke from myMind"
-    text: "1,2,3,4,5,6"
-    visible: false
-    funniness: -10
+  testProfessor:
+    firstName: "amr"
+    lastName: "culture"
+    password: "myMind"
+    email: "test@test.test"
+    address: "1,2,3,4,5,6"
+    dateOfBirth: "01.099.2021"
+    department: "CS"

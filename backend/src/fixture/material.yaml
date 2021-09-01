@@ -1,0 +1,7 @@
+entity: Material
+items:
+  testMaterial:
+    type: "text"
+    name: "Test.pdf"
+    id: '@testMaterialContent'
+    professor: '@testProfessor'

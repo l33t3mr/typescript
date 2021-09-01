@@ -1,51 +1,54 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 import * as yup from 'yup';
+import { Course } from './course';
 
-export const studentSchema = yup.object().shape({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  password: yup.string().required(),
-  // tslint:disable-next-line:object-literal-sort-keys
-  email: yup.string().email(),
-  address: yup.string().required(),
-  // tslint:disable-next-line:only-arrow-functions
-  dateOfBirth: yup.date().default(function () {
-    return new Date();
-  }),
-  isTutor: yup.boolean().required(),
-  department: yup.string().required(),
-  currentEducationLevel: yup.string().required(),
-  currentStudySemester: yup.number().required().positive().integer(),
-});
+export const studentSchema = yup.object().shape(
+  {
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
+    password: yup.string().required(),
+    // tslint:disable-next-line:object-literal-sort-keys
+    email: yup.string().email(),
+    address: yup.string().required(),
+    // tslint:disable-next-line:only-arrow-functions
+    dateOfBirth: yup.date().required(),
+    isTutor: yup.boolean().default(() => {
+      return false
+    }),
+    department: yup.string().required(),
+    currentEducationLevel: yup.string().required(),
+    currentStudySemester: yup.number().required().positive().integer(),
+  }
+);
 export type educationLevel = 'bachelor' | 'master' | 'diploma';
 
 @Entity()
 export class Student {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id!: string;
 
-  @Column()
+  @Column({ nullable: false })
   firstName!: string;
 
-  @Column()
+  @Column({ nullable: false })
   lastName!: string;
 
-  @Column()
+  @Column({ nullable: false })
   password!: string;
 
-  @Column()
+  @Column({ nullable: false })
   email!: string;
 
-  @Column()
+  @Column({ nullable: false })
   address!: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', nullable: false })
   dateOfBirth!: string;
 
-  @Column()
+  @Column({ nullable: false })
   department!: string;
 
-  @Column()
+  @Column({ nullable: false })
   isTutor!: boolean;
 
   @Column({
@@ -53,9 +56,13 @@ export class Student {
     // tslint:disable-next-line:object-literal-sort-keys
     enum: ['bachelor', 'master', 'diploma'],
     default: 'bachelor',
+    nullable: false
   })
   currentEducationLevel!: educationLevel;
 
-  @Column()
+  @Column({ nullable: false })
   currentStudySemester!: number;
+
+  @ManyToMany(() => Course, course => course.students)
+  courses: Course[];
 }
