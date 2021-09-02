@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Inject } from '@angular/core';
 import { NbIconConfig, NbMenuItem, NbTrigger } from '@nebular/theme';
 import { NB_WINDOW, NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
+import { AuthService } from '../../services/auth.service';
 
 
 import { Router } from '@angular/router';
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   notificationTrigger : NbTrigger = NbTrigger.HOVER
 
-  constructor( private router: Router , private nbMenuService: NbMenuService) {}
+  constructor( @Inject(AuthService)  private authService: AuthService, private router: Router , private nbMenuService: NbMenuService) {}
 
  ngOnInit() {
     this.nbMenuService.onItemClick()
@@ -28,7 +29,10 @@ export class HeaderComponent implements OnInit {
         map(({ item: { title } }) => title),
       )
       .subscribe(title => {
-          if(title == "Logout") this.router.navigate(['/login']);
+          if(title == "Logout") {
+            this.authService.setIsAuth(false);
+            this.router.navigate(['/login']);
+          }
           if(title == "Profile") this.router.navigate(['/profile']);
           console.log(`${title} was clicked!`)
       });

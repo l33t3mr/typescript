@@ -9,6 +9,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MainComponent } from './components/main/main.component';
 import { MycourseComponent } from './components/mycourse/mycourse.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -16,11 +17,11 @@ const routes: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', component: MainComponent},
-      { path: 'courses', component: CoursesComponent},
-      { path: 'my-course', component: MycourseComponent},
-      { path: 'profile', component: ProfileComponent},
-      { path: 'course/:id', component: SingleCourseComponent},
+      { path: '',  canActivate: [AuthGuard],component: MainComponent},
+      { path: 'courses', canActivate: [AuthGuard], component: CoursesComponent},
+      { path: 'my-course', canActivate: [AuthGuard], component: MycourseComponent},
+      { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
+      { path: 'course/:id', canActivate: [AuthGuard], component: SingleCourseComponent},
     ]
   },
   {

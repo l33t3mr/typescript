@@ -42,6 +42,9 @@ import { MainComponent } from './components/main/main.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MycourseComponent } from './components/mycourse/mycourse.component';
 import { TwoColumnLayoutComponent } from './components/two-column-layout/two-column-layout.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -71,8 +74,8 @@ import { TwoColumnLayoutComponent } from './components/two-column-layout/two-col
     NbRouteTabsetModule,
     NbCardModule, 
     NbTabsetModule,
-   NbActionsModule,
-   NbIconModule,
+    NbActionsModule,
+    NbIconModule,
     FormsModule,
     NbContextMenuModule,
     NbUserModule,
@@ -83,12 +86,12 @@ import { TwoColumnLayoutComponent } from './components/two-column-layout/two-col
     NbInputModule,
     NbToggleModule,
     NbDialogModule.forRoot(),
-   NbToastrModule.forRoot({
-       position: NbGlobalPhysicalPosition.TOP_RIGHT,
-       destroyByClick: true
+    NbToastrModule.forRoot({
+    position: NbGlobalPhysicalPosition.TOP_RIGHT,
+    destroyByClick: true
    }),
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

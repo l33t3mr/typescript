@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-authentication',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(@Inject(AuthService)  private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +20,7 @@ export class AuthenticationComponent implements OnInit {
     console.log(form.value);
     const email = form.value['email'];
     const password = form.value['password'];
-      console.log(email)
+    this.authService.setIsAuth(true);
     localStorage.setItem('email' , email);
     this.router.navigate(['/']);
   }
