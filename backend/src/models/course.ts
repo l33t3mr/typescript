@@ -13,6 +13,7 @@ export const courseSchema = yup.object().shape(
     maxCapacity: yup.number().required().positive().integer(),
   }
 );
+
 @Entity()
 export class Course {
   @PrimaryGeneratedColumn()
@@ -33,7 +34,7 @@ export class Course {
   @ManyToOne(() => Professor, professor => professor.courses, { nullable: false })
   professor: Professor;
 
-  @ManyToMany(() => Material)
+  @ManyToMany(() => Material, {onDelete: 'CASCADE'})
   @JoinTable()
   materials: Material[];
 

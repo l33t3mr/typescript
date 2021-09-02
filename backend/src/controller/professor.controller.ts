@@ -1,6 +1,8 @@
 import { getRepository } from "typeorm";
 import { Professor } from "../models/professor";
 import { Request, Response } from "express";
+import { Course } from "../models/course";
+import { Material } from "../models/material";
 
 export const getProfessors = async (req: Request, res: Response) => {
     try {
@@ -71,7 +73,7 @@ export const deleteProfessor = async (req: Request, res: Response) => {
 
         const profRepo = await getRepository(Professor);
         const prof = await profRepo.findOneOrFail(id);
-
+        
         profRepo.remove(prof);
 
         res.send({

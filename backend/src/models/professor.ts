@@ -54,9 +54,9 @@ export class Professor {
   @Column({ nullable: false })
   department!: string;
 
-  @OneToMany(() => Material, material => material.professor, { eager: true })
+  @OneToMany(() => Material, material => material.professor, { eager: true, onDelete:'CASCADE' })
   materials: Material[];
 
-  @OneToMany(() => Course, course => course.professor, { eager: true })
+  @OneToMany(() => Course, course => course.professor, { eager: true, onDelete: 'CASCADE' })
   courses: Course[];
 }

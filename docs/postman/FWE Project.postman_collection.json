@@ -37,11 +37,11 @@
 		{
 			"name": "PATCH Professor",
 			"request": {
-				"method": "POST",
+				"method": "PATCH",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"XX\"\n}",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"02-09-2021\",\n    \"dep\": \"XX\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,6 +81,38 @@
 					}
 				},
 				"url": {
+					"raw": "localhost:3000/api/professors/4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"professors",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Professors",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
 					"raw": "localhost:3000/api/professors/",
 					"host": [
 						"localhost"
@@ -96,7 +128,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETEProfessor",
+			"name": "DELETE Professor",
 			"request": {
 				"method": "DELETE",
 				"header": [],
