@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "9cbfad98-f913-45e8-a8fc-f90d65e96d25",
+		"name": "FWE Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Professor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/professors/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"professors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Professor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"XX\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/professors/10",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"professors",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Professor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/professors/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"professors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEProfessor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/professors/4",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"professors",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
