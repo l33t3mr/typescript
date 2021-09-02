@@ -19,6 +19,17 @@ export const professorSchema = yup.object().shape(
 
 @Entity()
 export class Professor {
+  // constructor({firstName, lastName, password,
+  //   email, address, dob, dep }){
+  //     this.firstName = firstName;
+  //     this.lastName = lastName;
+  //     this.password = password;
+  //     this.email = email;
+  //     this.address = address;
+  //     this.dateOfBirth = dob;
+  //     this.department = dep;
+  // }
+
   @PrimaryGeneratedColumn()
   id!: string;
 
@@ -38,14 +49,14 @@ export class Professor {
   address!: string;
 
   @Column({ type: 'date', nullable: false })
-  dateOfBirth!: string;
+  dateOfBirth!: Date;
 
   @Column({ nullable: false })
   department!: string;
 
-  @OneToMany(() => Material, material => material.professor)
+  @OneToMany(() => Material, material => material.professor, { eager: true })
   materials: Material[];
 
-  @OneToMany(() => Course, course => course.professor)
+  @OneToMany(() => Course, course => course.professor, { eager: true })
   courses: Course[];
 }

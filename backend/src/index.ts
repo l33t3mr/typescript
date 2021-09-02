@@ -6,6 +6,7 @@ import { createDatabaseConnection } from './util/createDatabaseConnection';
 import * as bodyParser from 'body-parser';
 
 import morgan from 'morgan';
+import { globalRouter } from './router/global.router';
 
 const port: number = Number(process.env.PORT);
 
@@ -18,10 +19,8 @@ export const startServer = async () => {
     const dbConnection = await createDatabaseConnection();
 
     app.use(bodyParser.json());
-    app.use(morgan('combined'));
-    app.get('/', (req, res) => {
-      res.send("Hello World!");
-    })
+    app.use(morgan('combined'), globalRouter);
+
 
     const server = app.listen(port, () => console.log(`Server is running on port ${port}`));
     return { server, dbConnection };
