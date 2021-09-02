@@ -23,22 +23,22 @@ export class Course {
   name!: string;
 
   @Column({ type: 'datetime', nullable: false })
-  startsOn!: string;
+  startsOn!: Date;
 
   @Column({ type: 'datetime', nullable: false })
-  endsOn!: string;
+  endsOn!: Date;
 
   @Column({ nullable: false })
   maxCapacity!: number;
 
-  @ManyToOne(() => Professor, professor => professor.courses, { nullable: false })
+  @ManyToOne(() => Professor, professor => professor.courses, { nullable: false, onDelete: 'CASCADE'})
   professor: Professor;
 
-  @ManyToMany(() => Material, {onDelete: 'CASCADE'})
+  @ManyToMany(() => Material, { eager: true })
   @JoinTable()
   materials: Material[];
 
-  @ManyToMany(() => Student)
+  @ManyToMany(() => Student, { eager: true })
   @JoinTable()
   students: Student[];
 }

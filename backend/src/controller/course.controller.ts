@@ -1,0 +1,166 @@
+import { getRepository } from "typeorm";
+import { Course } from "../models/course";
+import { Request, Response } from "express";
+import { Professor } from "../models/professor";
+import { Student } from "../models/student";
+import { Material } from "../models/material";
+
+export const getCourses = async (req: Request, res: Response) => {
+    try {
+        const courseRepo = await getRepository(Course);
+        let course = await courseRepo.find({ relations: ['professor'] });
+
+        if (course.length != 0) {
+            res.status(200).send(JSON.stringify(course));
+            return;
+        }
+
+        res.status(400).send({
+            "error": "No Courses were found"
+        });
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        });
+    }
+}
+
+export const getCourse = async (req: Request, res: Response) => {
+    try {
+        const courseID = req.params.id;
+
+        const courseRepo = await getRepository(Course);
+        let course = await courseRepo.findOneOrFail(courseID, { relations: ['professor'] });
+
+        res.status(200).send(JSON.stringify(course))
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        })
+    }
+}
+
+export const postCourse = async (req: Request, res: Response) => {
+    try {
+        let { profID, name, startsOn, endsOn, maxCapacity } = req.body
+
+        const profRepo = await getRepository(Professor);
+        const prof = await profRepo.findOneOrFail(profID);
+
+        const course = new Course();
+
+        course.name = name;
+        course.startsOn = new Date(startsOn);
+        course.endsOn = new Date(endsOn);
+        course.maxCapacity = maxCapacity
+        // can prof be null?
+        course.professor = prof;
+
+        prof.courses.push(course);
+
+        let savedProf = await profRepo.save(prof);
+        let courseID = await savedProf.courses.pop()?.id;
+
+        res.send({
+            'status': 'success',
+            'id': courseID
+        })
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        })
+    }
+}
+
+export const deleteCourse = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+
+        const courseRepo = await getRepository(Course);
+        const course = await courseRepo.findOneOrFail(id);
+
+        courseRepo.remove(course);
+
+        res.send({
+            'status': 'success'
+        })
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+export const patchCourse = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+
+        let { name, startsOn, endsOn, maxCapacity } = req.body
+
+        const courseRepo = await getRepository(Course);
+        const course = await courseRepo.findOneOrFail(id);
+
+        course.name = name;
+        course.startsOn = new Date(startsOn);
+        course.endsOn = new Date(endsOn);
+        course.maxCapacity = maxCapacity
+
+        courseRepo.save(course);
+
+        res.send({
+            'status': 'success'
+        })
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        })
+    }
+}
+
+export const addStudent = async (req: Request, res: Response) => {
+    try {
+        const cID = req.params.id;
+        const sID = req.params.sid;
+
+        const courseRepo = await getRepository(Course);
+        const course = await courseRepo.findOneOrFail(cID, { relations: ['students'] });
+
+        const studentRepo = await getRepository(Student);
+        const student = await studentRepo.findOneOrFail(sID);
+
+        course.students.push(student);
+
+        courseRepo.save(course);
+
+        res.send({
+            'status': 'success'
+        })
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        })
+    }
+}
+
+export const addMaterial = async (req: Request, res: Response) => {
+    try {
+        const cID = req.params.id;
+        const mID = req.params.sid;
+
+        const courseRepo = await getRepository(Course);
+        const course = await courseRepo.findOneOrFail(cID, { relations: ['materials'] });
+
+        const materialRepo = await getRepository(Material);
+        const material = await materialRepo.findOneOrFail(mID);
+
+        course.materials.push(material);
+
+        courseRepo.save(course);
+
+        res.send({
+            'status': 'success'
+        })
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        })
+    }
+}
