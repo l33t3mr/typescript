@@ -1,0 +1,36 @@
+.header-container {
+      display: flex;
+      align-items: center;
+      width: auto;
+      height: 18%;
+      background: #E69119;
+      flex-direction: row;
+      border-radius: 15px;
+      justify-content: space-between;
+
+      ::ng-deep .user-name{
+            color: #fff;
+            font-weight: bold;
+      }
+
+      ::ng-deep  .user-picture{
+            color: #fff;
+            font-weight: bold;
+      }
+
+      ::ng-deep .user-title {
+            color: #fff;
+            font-weight: bold;
+      }
+
+      ::ng-deep  nb-icon{
+            color:  #fff;
+      }
+
+      img { width: 20%; height: auto; }
+
+      @media screen and (max-width: 600px) {
+            img { width: 50%; height: auto; }
+      }
+
+}

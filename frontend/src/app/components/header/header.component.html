@@ -1,0 +1,30 @@
+
+<div class="header-container">
+
+<img  src="assets/Hda_logo.svg">
+<nb-actions >
+      <nb-action 
+        badgeDot
+        badgePosition="top right"
+        icon="bell-outline"
+        badgeStatus="danger"
+        [nbContextMenu]="notification"
+        [nbContextMenuTrigger]="notificationTrigger"
+      >
+        
+      </nb-action>
+      
+      
+      <nb-action >
+        <nb-user 
+            name="Ala Rouis"
+            title="Student"
+            [nbContextMenu]="Menu"
+            nbContextMenuTag="userProfile">
+        </nb-user>
+      </nb-action>
+
+
+</nb-actions>
+</div>
+

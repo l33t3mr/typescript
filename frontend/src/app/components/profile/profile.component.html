@@ -1,0 +1,28 @@
+
+
+<nb-card  >
+    <nb-card-header >
+    	<div class="d-flex justify-content-between">
+     		Hallo Name
+    		<nb-toggle labelPosition="start" [(ngModel)]="toggleNgModel">Bearbeiten</nb-toggle>
+		</div>
+    </nb-card-header>
+    <nb-card-body>
+            <input type="text"  class="mb-4" fieldSize="giant" nbInput fullWidth status="warning" value="ALA" [disabled]="!toggleNgModel" placeholder="Vorname">  
+
+            <input type="text"  class="mb-4" fieldSize="giant" value="ROUIS" nbInput fullWidth status="warning" [disabled]="!toggleNgModel"placeholder="Nachname">      
+            
+            <input type="text"  class="mb-4" fieldSize="giant" value="31.08.1994" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Geburtstag">
+
+            <input type="text"  class="mb-4" fieldSize="giant" value="INFORMATIK" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Nachname">      
+		    
+		    <div class="d-flex justify-content-end">
+
+		    	<button nbButton status="warning" [disabled]="!toggleNgModel">update</button>
+		    </div>
+    </nb-card-body>
+
+    <nb-card-footer>
+
+    </nb-card-footer>
+</nb-card>

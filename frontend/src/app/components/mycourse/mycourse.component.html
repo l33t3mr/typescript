@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row"  >
+    <div class="col-lg-6 col-sm-12" *ngFor="let number of numbers">
+      <nb-card (click)="sigleCourse(number)" >
+        <nb-card-header style="position: relative;">
+          kurs name
+          <nb-badge text="aktuelles Semester" status="success" position="top right"></nb-badge>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="d-flex justify-content-between">
+              beschreibung
+              <button nbButton outline status="danger" (click)="abmelden($event)" >Abmelden</button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  
+
+    <div class="col-lg-6 col-sm-12" *ngFor="let number of numbers">
+      <nb-card (click)="sigleCourse(number)" >
+        <nb-card-header style="position: relative;">
+          kurs name
+          <nb-badge text="aktuelles Semester" status="danger" position="top right"></nb-badge>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="d-flex justify-content-between">
+              beschreibung
+              <button nbButton outline status="danger" (click)="abmelden($event)" >Abmelden</button>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+  </div>
+</div>
+
+

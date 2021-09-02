@@ -1,0 +1,46 @@
+.accordion-item-background-color{
+	background: black;
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexDirection($direction) {
+  -webkit-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin flexRow() {
+  @include flexbox;
+  @include flexDirection(row);
+}
+
+@mixin nb-card-header {
+  nb-card-body {
+    & > div {
+      margin: 2% 0;
+      padding: 1% 0;
+    }
+  }
+  nb-card-header {
+    background: #e6e8ec !important;
+  }
+  fa-icon{
+    cursor: pointer;
+  }
+  .dialog-header-w-close {
+    @include flexRow;
+    justify-content: space-between;
+  }
+}
+
+.dialog-box {
+  width: 40%;
+  @include nb-card-header;
+}
