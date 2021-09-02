@@ -13,15 +13,18 @@ export const materialSchema = yup.object().shape(
 
 @Entity()
 export class Material {
-  @OneToOne(type => MaterialContent, { primary: true, cascade: ["update", "insert", "remove"] })
-  @JoinColumn({ name: "contentID" })
-  id!: MaterialContent;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @Column({ nullable: false })
   type!: string;
 
   @Column({ nullable: false })
   name!: string;
+
+  @OneToOne(() => MaterialContent, {onDelete: 'CASCADE', cascade:['insert', 'update']})
+  @JoinColumn()
+  materialContent: MaterialContent
 
   @ManyToOne(() => Professor, professor => professor.materials, {nullable: false})
   @JoinColumn({ name: "profID" })
