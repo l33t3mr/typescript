@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { Request, Response } from 'node-fetch';
 import { getProfessors, getProfessor, postProfessor, patchProfessor, deleteProfessor } from '../controller/professor.controller';
 
 export const professorRouter = Router({ mergeParams: true });

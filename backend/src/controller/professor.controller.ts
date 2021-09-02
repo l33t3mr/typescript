@@ -7,7 +7,7 @@ import { Material } from "../models/material";
 export const getProfessors = async (req: Request, res: Response) => {
     try {
         const profRepo = await getRepository(Professor);
-        let prof = await profRepo.find();
+        let prof = await profRepo.find({relations: ['material', 'course']});
 
         if (prof.length != 0) {
             res.status(200).send(JSON.stringify(prof));
@@ -29,7 +29,7 @@ export const getProfessor = async (req: Request, res: Response) => {
         const profID = req.params.id;
 
         const profRepo = await getRepository(Professor);
-        let prof = await profRepo.findOneOrFail(profID);
+        let prof = await profRepo.findOneOrFail(profID, {relations: ['material', 'course']});
 
         res.status(200).send(JSON.stringify(prof))
     } catch (error) {
@@ -74,7 +74,7 @@ export const deleteProfessor = async (req: Request, res: Response) => {
         const profRepo = await getRepository(Professor);
         const prof = await profRepo.findOneOrFail(id);
         
-        profRepo.remove(prof);
+        await profRepo.remove(prof);
 
         res.send({
             'status': 'success'

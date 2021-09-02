@@ -35,6 +35,154 @@
 			"response": []
 		},
 		{
+			"name": "POST Course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"profID\": 14,\n    \"name\": \"testCoursXeX\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/courses/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Courses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/courses/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/courses/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Course",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/courses/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Course",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/courses/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "PATCH Professor",
 			"request": {
 				"method": "PATCH",
@@ -142,7 +290,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/professors/4",
+					"raw": "localhost:3000/api/professors/13",
 					"host": [
 						"localhost"
 					],
@@ -150,7 +298,51 @@
 					"path": [
 						"api",
 						"professors",
-						"4"
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Course Add Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/courses/8/students/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						"8",
+						"students",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Course Add Material",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/courses/8/materials/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"courses",
+						"8",
+						"materials",
+						"1"
 					]
 				}
 			},
