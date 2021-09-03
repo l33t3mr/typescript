@@ -1,5 +1,8 @@
 */node_modules
+.DS_Store
 *.map
 *.code-workspace
 */dist
-.DS_Store
+.
+*/package-lock.json
+db-volume

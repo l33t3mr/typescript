@@ -14,7 +14,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - my-datavolume:/var/lib/mysql
+      - ./db-volume:/var/lib/mysql
 
   backend:
     working_dir: /var/app/backend
@@ -32,6 +32,3 @@ services:
     command: npm start
     volumes:
       - ./backend:/var/app/backend
-
-volumes:
-  my-datavolume:

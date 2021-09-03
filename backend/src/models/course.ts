@@ -1,8 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, Timestamp } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable, Timestamp } from 'typeorm';
 import * as yup from 'yup';
-import { Professor } from './professor'
+import { User } from './user'
 import { Material } from './material';
-import { Student } from './student';
 
 export const courseSchema = yup.object().shape(
   {
@@ -31,14 +30,10 @@ export class Course {
   @Column({ nullable: false })
   maxCapacity!: number;
 
-  @ManyToOne(() => Professor, professor => professor.courses, { nullable: false, onDelete: 'CASCADE'})
-  professor: Professor;
-
-  @ManyToMany(() => Material, { eager: true })
+  @ManyToMany(() => Material)
   @JoinTable()
   materials: Material[];
-
-  @ManyToMany(() => Student, { eager: true })
-  @JoinTable()
-  students: Student[];
+  
+  @ManyToMany(() => User, user => user.courses )
+  users: User[];
 }

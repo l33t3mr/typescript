@@ -1,6 +1,6 @@
 import { Column, OneToOne, JoinColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
 import * as yup from 'yup';
-import { Professor } from './professor';
+import { User } from './user';
 import { MaterialContent } from './materialContent';
 
 export const materialSchema = yup.object().shape(
@@ -26,7 +26,7 @@ export class Material {
   @JoinColumn()
   materialContent: MaterialContent
 
-  @ManyToOne(() => Professor, professor => professor.materials, { nullable: false, onDelete: 'CASCADE' })
-  @JoinColumn({ name: "profID" })
-  professor: Professor;
+  @ManyToOne(() => User, user => user.materials, { nullable: false, onDelete: 'CASCADE' })
+  @JoinColumn({ name: "userID" })
+  user: User;
 }

@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { professorRouter } from './professor.router';
+import { userRouter } from './user';
 import { courseRouter } from './course.router';
 
 export const globalRouter = Router({ mergeParams: true });
 
-globalRouter.use('/api', professorRouter);
+globalRouter.use('/api', userRouter);
 globalRouter.use('/api', courseRouter)
