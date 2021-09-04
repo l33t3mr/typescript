@@ -4,7 +4,7 @@ import { getUsers, getUser, postUser, patchUser, deleteUser } from '../controlle
 export const userRouter = Router({ mergeParams: true });
 
 userRouter.get('/users', getUsers);
-userRouter.get('/users/:id', getUser);
+userRouter.get('/users/:email', getUser);
 userRouter.post('/users/', postUser);
 userRouter.patch('/users/:id', patchUser);
 userRouter.delete('/users/:id', deleteUser);

@@ -2,7 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
+import { User } from '../module';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-authentication',
@@ -11,7 +12,22 @@ import { AuthService } from '../../services/auth.service';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor(@Inject(AuthService)  private authService: AuthService, private router: Router) { }
+  user: User = {
+    id: -1,
+    firstName: "",
+    lastName: "",
+    address: "",
+    dob: "",
+    dep: "",
+    email: "",
+    role: "",
+    materials: {},
+    courses: {}
+  };
+
+
+
+  constructor(@Inject(AuthService) private authService: AuthService, private router: Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -21,12 +37,23 @@ export class AuthenticationComponent implements OnInit {
     const email = form.value['email'];
     const password = form.value['password'];
     this.authService.setIsAuth(true);
-    localStorage.setItem('email' , email);
+    this.getUser(email)
+    localStorage.setItem('email', email);
     this.router.navigate(['/']);
   }
 
-  goToRegistration(){
+  goToRegistration() {
     this.router.navigate(['/registration']);
   }
-  
+
+  getUser(email: string) {
+    this.httpClient.get<any>(`http://localhost:2000/api/users/${email}`)
+      .subscribe(
+        response => {
+          this.user = response;
+          localStorage.setItem('user', JSON.stringify(this.user));
+        }
+      )
+  }
+
 }

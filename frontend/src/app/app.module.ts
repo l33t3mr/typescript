@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { HeaderComponent } from './components/header/header.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { 
   NbThemeModule,
   NbLayoutModule, 
@@ -34,7 +36,8 @@ import {
   NbInputModule,
   NbToggleModule,
   NbDialogModule,
-  NbDatepickerModule
+  NbDatepickerModule,
+  NbAlertModule
 } from '@nebular/theme';
 
 import { FormsModule }   from '@angular/forms';
@@ -94,6 +97,8 @@ import { ProfComponent } from './components/prof/prof.component';
       position: NbGlobalPhysicalPosition.TOP_RIGHT,
       destroyByClick: true
     }),
+    NbAlertModule,
+    HttpClientModule,
   ],
   providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
