@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getUsers, getUser, postUser, patchUser, deleteUser } from '../controller/user';
+import { getUsers, getUser, postUser, patchUser, deleteUser } from '../controller/user.controller';
 
 export const userRouter = Router({ mergeParams: true });
 
