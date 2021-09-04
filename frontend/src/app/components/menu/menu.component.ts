@@ -20,7 +20,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/my-course']);
     }
     if(e.tabTitle == "Home"){
-      this.router.navigate(['/']);
+      //this.router.navigate(['/']);
     }
     if(e.tabTitle == "Alle Kurse"){
       this.router.navigate(['/courses']);

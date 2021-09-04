@@ -17,7 +17,9 @@ export class ProfileComponent implements OnInit {
 
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
+    console.log(form.value["input1"]);
+
+
   }
 
 

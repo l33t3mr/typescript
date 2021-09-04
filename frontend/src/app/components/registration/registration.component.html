@@ -1,1 +1,11 @@
-<p>registration works!</p>
+<nb-card size="large">
+    <nb-card-body>
+
+
+        <input type="text" id="input1" name="input1" class="mb-4" fieldSize="giant" nbInput fullWidth status="warning" value="ALA"  placeholder="Vorname" ngModel >  
+
+        <nb-toggle [(ngModel)]="toggle_1" (click)="ToggelChange()" >Toggle with NgModel</nb-toggle>
+        <nb-toggle [(ngModel)]="toggle_2" (click)="ToggelChange()" >Toggle with NgModel</nb-toggle>
+
+    </nb-card-body>
+</nb-card>

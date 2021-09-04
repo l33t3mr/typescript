@@ -24,15 +24,14 @@ const routes: Routes = [
       { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
       { path: 'course/:id', canActivate: [AuthGuard], component: SingleCourseComponent},
       { path: 'prof', canActivate: [AuthGuard], component: ProfComponent},
+      { path: 'registration', component: RegistrationComponent},
+
     ]
   },
+
   {
     path: 'login',
     component: AuthenticationComponent,
-  },
-  {
-    path: 'registration',
-    component: RegistrationComponent,
   },
   {
     path: "**",

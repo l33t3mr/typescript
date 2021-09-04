@@ -33,7 +33,8 @@ import {
   NbBadgeModule,
   NbInputModule,
   NbToggleModule,
-  NbDialogModule
+  NbDialogModule,
+  NbDatepickerModule
 } from '@nebular/theme';
 
 import { FormsModule }   from '@angular/forms';
@@ -87,11 +88,12 @@ import { ProfComponent } from './components/prof/prof.component';
     NbBadgeModule,
     NbInputModule,
     NbToggleModule,
+    NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbToastrModule.forRoot({
-    position: NbGlobalPhysicalPosition.TOP_RIGHT,
-    destroyByClick: true
-   }),
+      position: NbGlobalPhysicalPosition.TOP_RIGHT,
+      destroyByClick: true
+    }),
   ],
   providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]

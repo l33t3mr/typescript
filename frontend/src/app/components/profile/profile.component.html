@@ -1,5 +1,3 @@
-
-
 <nb-card  >
     <nb-card-header >
     	<div class="d-flex justify-content-between">
@@ -9,6 +7,7 @@
     </nb-card-header>
     <nb-card-body>
         <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
+            
             <input type="text" id="input1" name="input1" class="mb-4" fieldSize="giant" nbInput fullWidth status="warning" value="ALA" [disabled]="!toggleNgModel" placeholder="Vorname" ngModel >  
 
             <input type="text" id="input2" class="mb-4" name="input2" fieldSize="giant" value="ROUIS" nbInput fullWidth status="warning" [disabled]="!toggleNgModel"placeholder="Nachname" ngModel>      
