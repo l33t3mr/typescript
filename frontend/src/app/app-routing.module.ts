@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainComponent } from './components/main/main.component';
 import { MycourseComponent } from './components/mycourse/mycourse.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { ProfComponent } from './components/prof/prof.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'my-course', canActivate: [AuthGuard], component: MycourseComponent},
       { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent},
       { path: 'course/:id', canActivate: [AuthGuard], component: SingleCourseComponent},
+      { path: 'prof', canActivate: [AuthGuard], component: ProfComponent},
     ]
   },
   {

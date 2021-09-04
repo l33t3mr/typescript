@@ -8,18 +8,20 @@
 		</div>
     </nb-card-header>
     <nb-card-body>
-            <input type="text"  class="mb-4" fieldSize="giant" nbInput fullWidth status="warning" value="ALA" [disabled]="!toggleNgModel" placeholder="Vorname">  
+        <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
+            <input type="text" id="input1" name="input1" class="mb-4" fieldSize="giant" nbInput fullWidth status="warning" value="ALA" [disabled]="!toggleNgModel" placeholder="Vorname" ngModel >  
 
-            <input type="text"  class="mb-4" fieldSize="giant" value="ROUIS" nbInput fullWidth status="warning" [disabled]="!toggleNgModel"placeholder="Nachname">      
+            <input type="text" id="input2" class="mb-4" name="input2" fieldSize="giant" value="ROUIS" nbInput fullWidth status="warning" [disabled]="!toggleNgModel"placeholder="Nachname" ngModel>      
             
-            <input type="text"  class="mb-4" fieldSize="giant" value="31.08.1994" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Geburtstag">
+            <input type="text" id="input3" class="mb-4" name="input3" fieldSize="giant" value="31.08.1994" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Geburtstag" ngModel>
 
-            <input type="text"  class="mb-4" fieldSize="giant" value="INFORMATIK" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Nachname">      
+            <input type="text" id="input4" name="input4" class="mb-4" fieldSize="giant" value="INFORMATIK" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Nachname" ngModel>      
 		    
 		    <div class="d-flex justify-content-end">
 
-		    	<button nbButton status="warning" [disabled]="!toggleNgModel">update</button>
+		    	<button nbButton status="warning" type="submit" [disabled]="!toggleNgModel">update</button>
 		    </div>
+        </form>
     </nb-card-body>
 
     <nb-card-footer>

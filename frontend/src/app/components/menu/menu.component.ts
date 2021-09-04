@@ -25,5 +25,10 @@ export class MenuComponent implements OnInit {
     if(e.tabTitle == "Alle Kurse"){
       this.router.navigate(['/courses']);
     }
+
+    if(e.tabTitle == "Prof Ansicht"){
+      this.router.navigate(['/prof']);
+    }
+
   }
 }
