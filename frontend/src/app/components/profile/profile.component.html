@@ -1,29 +1,40 @@
-<nb-card  >
-    <nb-card-header >
-    	<div class="d-flex justify-content-between">
-     		Hallo Name
-    		<nb-toggle labelPosition="start" [(ngModel)]="toggleNgModel">Bearbeiten</nb-toggle>
-		</div>
+<nb-card>
+    <nb-card-header>
+        <div class="d-flex justify-content-between">
+            Profile
+            <nb-toggle labelPosition="start" [(ngModel)]="toggleNgModel">Bearbeiten</nb-toggle>
+        </div>
     </nb-card-header>
     <nb-card-body>
         <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
-            
-            <input type="text" id="input1" name="input1" class="mb-4" fieldSize="giant" nbInput fullWidth status="warning" value="ALA" [disabled]="!toggleNgModel" placeholder="Vorname" ngModel >  
+            <input type="text" id="first_name" name="first_name" class="mb-4" fieldSize="medium" nbInput fullWidth
+                status="warning" [(ngModel)]="user.firstName" [disabled]="!toggleNgModel" placeholder="First Name"
+                ngModel>
 
-            <input type="text" id="input2" class="mb-4" name="input2" fieldSize="giant" value="ROUIS" nbInput fullWidth status="warning" [disabled]="!toggleNgModel"placeholder="Nachname" ngModel>      
-            
-            <input type="text" id="input3" class="mb-4" name="input3" fieldSize="giant" value="31.08.1994" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Geburtstag" ngModel>
+            <input type="text" id="last_name" class="mb-4" name="last_name" fieldSize="medium" value="" nbInput
+                fullWidth status="warning" [(ngModel)]="user.lastName" [disabled]="!toggleNgModel"
+                placeholder="Last Name" ngModel>
 
-            <input type="text" id="input4" name="input4" class="mb-4" fieldSize="giant" value="INFORMATIK" nbInput fullWidth status="warning" [disabled]="!toggleNgModel" placeholder="Nachname" ngModel>      
-		    
-		    <div class="d-flex justify-content-end">
+            <input type="text" id="email" class="mb-4" name="email" fieldSize="medium" value="" nbInput fullWidth
+                status="warning" [(ngModel)]="user.email" [disabled]="!toggleNgModel" placeholder="Email" ngModel>
 
-		    	<button nbButton status="warning" type="submit" [disabled]="!toggleNgModel">update</button>
-		    </div>
+            <input type="text" id="address" name="address" class="mb-4" fieldSize="medium" value="" nbInput fullWidth
+                status="warning" [(ngModel)]="user.address" [disabled]="!toggleNgModel" placeholder="Address" ngModel>
+
+            <input type="text" id="dep" name="dep" class="mb-4" fieldSize="medium" value="" nbInput fullWidth
+                status="warning" [(ngModel)]="user.dep" [disabled]="!toggleNgModel" placeholder="Department" ngModel>
+
+            <input type="text" id="dob" name="dob" class="mb-4" fieldSize="medium" value="" nbInput fullWidth
+                status="warning" [(ngModel)]="user.dob" [disabled]='true' placeholder="Date Of Birth" ngModel>
+
+            <div class="d-flex justify-content-end">
+
+                <button nbButton status="warning" type="submit" [disabled]="!toggleNgModel">update</button>
+            </div>
         </form>
+        <nb-alert status="danger" closable *ngIf="patchError">{{error.message}}</nb-alert>
     </nb-card-body>
 
     <nb-card-footer>
-
     </nb-card-footer>
 </nb-card>

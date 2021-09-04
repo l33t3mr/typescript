@@ -14,7 +14,7 @@ export const getUsers = async (req: Request, res: Response) => {
         }
 
         res.status(400).send({
-            "error": "No Professors were found"
+            "error": "No Users were found"
         });
     } catch (error) {
         res.status(500).send({
@@ -25,10 +25,10 @@ export const getUsers = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
     try {
-        const userID = req.params.id;
+        const userEmail = req.params.email;
 
         const userRepo = await getRepository(User);
-        let user = await userRepo.findOneOrFail(userID, { relations: ['material', 'course'] });
+        let user = await userRepo.findOneOrFail({where: {email: userEmail} ,relations: ['materials', 'courses'] });
 
         res.status(200).send(JSON.stringify(user))
     } catch (error) {
@@ -100,14 +100,13 @@ export const patchUser = async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
 
-        let { firstName, lastName, password, email, address, dob, dep } = req.body
+        let { firstName, lastName, email, address, dob, dep } = req.body
 
         const userRepo = await getRepository(User);
         const user = await userRepo.findOneOrFail(id);
 
         user.firstName = firstName;
         user.lastName = lastName;
-        user.password = password;
         user.email = email;
         user.address = address
         user.dob = new Date(dob);
