@@ -1,14 +1,13 @@
 import { getRepository } from "typeorm";
 import { Course } from "../models/course";
 import { Request, Response } from "express";
-import { Professor } from "../models/professor";
-import { Student } from "../models/student";
+import { User } from "../models/user";
 import { Material } from "../models/material";
 
 export const getCourses = async (req: Request, res: Response) => {
     try {
         const courseRepo = await getRepository(Course);
-        let course = await courseRepo.find({ relations: ['professor'] });
+        let course = await courseRepo.find({ relations: ['users'] });
 
         if (course.length != 0) {
             res.status(200).send(JSON.stringify(course));
@@ -30,7 +29,7 @@ export const getCourse = async (req: Request, res: Response) => {
         const courseID = req.params.id;
 
         const courseRepo = await getRepository(Course);
-        let course = await courseRepo.findOneOrFail(courseID, { relations: ['professor'] });
+        let course = await courseRepo.findOneOrFail(courseID, { relations: ['users', 'materials'] });
 
         res.status(200).send(JSON.stringify(course))
     } catch (error) {
@@ -42,28 +41,29 @@ export const getCourse = async (req: Request, res: Response) => {
 
 export const postCourse = async (req: Request, res: Response) => {
     try {
-        let { profID, name, startsOn, endsOn, maxCapacity } = req.body
+        let { userID, name, startsOn, endsOn, maxCapacity } = req.body
 
-        const profRepo = await getRepository(Professor);
-        const prof = await profRepo.findOneOrFail(profID);
+        const userRepo = await getRepository(User);
+        const user = await userRepo.findOneOrFail(userID, { relations: ['courses'] });
+
+        if (user.role !== 'prof') {
+            throw ('User does not have permissions to create a course')
+        }
 
         const course = new Course();
-
         course.name = name;
         course.startsOn = new Date(startsOn);
         course.endsOn = new Date(endsOn);
-        course.maxCapacity = maxCapacity
-        // can prof be null?
-        course.professor = prof;
+        course.maxCapacity = maxCapacity;
 
-        prof.courses.push(course);
+        // cascade is on, so saving user saves course
+        user.courses.push(course);
 
-        let savedProf = await profRepo.save(prof);
-        let courseID = await savedProf.courses.pop()?.id;
+        const createdUser = await userRepo.save(user);
 
         res.send({
             'status': 'success',
-            'id': courseID
+            'id': createdUser.courses.pop()?.id
         })
     } catch (error) {
         res.status(500).send({
@@ -115,20 +115,52 @@ export const patchCourse = async (req: Request, res: Response) => {
     }
 }
 
-export const addStudent = async (req: Request, res: Response) => {
+export const addStudent = async (req: Request, res: Response) => { 
     try {
         const cID = req.params.id;
-        const sID = req.params.sid;
+        const uID = req.params.uid;
 
         const courseRepo = await getRepository(Course);
-        const course = await courseRepo.findOneOrFail(cID, { relations: ['students'] });
+        const course = await courseRepo.findOneOrFail(cID);
 
-        const studentRepo = await getRepository(Student);
-        const student = await studentRepo.findOneOrFail(sID);
+        const userRepo = await getRepository(User);
+        const user = await userRepo.findOneOrFail(uID, {relations: ['courses']});
 
-        course.students.push(student);
+        if (user.role === 'prof'){
+            throw('Only students or tutors could be added to a course')
+        }
 
-        courseRepo.save(course);
+        user.courses.push(course);
+
+        await userRepo.save(user);
+
+        res.send({
+            'status': 'success'
+        })
+    } catch (error) {
+        res.status(500).send({
+            "error": error
+        })
+    }
+}
+
+export const removeStudent = async (req: Request, res: Response) => {
+    try {
+        const cID = req.params.id;
+        const uID = req.params.uid;
+
+        const userRepo = await getRepository(User);
+        const user = await userRepo.findOneOrFail(uID, {relations: ['courses']});
+
+        if (user.role === 'prof'){
+            throw('Only students or tutors could be removed from a course')
+        }
+
+        user.courses = user.courses.filter(course => {
+            course.id !== cID
+        })
+
+        await userRepo.save(user);
 
         res.send({
             'status': 'success'
