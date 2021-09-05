@@ -22,11 +22,11 @@ export class Material {
   @Column({ nullable: false })
   name!: string;
 
-  @OneToOne(() => MaterialContent, { onDelete: 'CASCADE', cascade: ['insert', 'update'] })
+  @OneToOne(() => MaterialContent, { cascade: true })
   @JoinColumn()
   materialContent: MaterialContent
 
-  @ManyToOne(() => User, user => user.materials, { nullable: false, onDelete: 'CASCADE' })
-  @JoinColumn({ name: "userID" })
+  @ManyToOne(() => User, user => user.materials)
+  @JoinColumn()
   user: User;
 }

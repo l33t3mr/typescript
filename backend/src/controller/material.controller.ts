@@ -4,6 +4,8 @@ import { getRepository } from 'typeorm';
 import { User } from '../models/user';
 import { MaterialContent } from '../models/materialContent';
 import { Blob } from 'buffer';
+import { connect } from 'http2';
+import { create } from 'domain';
 
 export const getMaterials = async (req, res) => {
   try {
@@ -41,7 +43,6 @@ export const patchMaterial = async (req, res) => {
       material.name = name;
     }
     material.materialContent.content = content;
-    material.materialContent.path = path;
     await materialContentRepo.save(material.materialContent);
     await materialRepo.save(material);
     // @ts-ignore
@@ -53,41 +54,74 @@ export const patchMaterial = async (req, res) => {
 };
 
 export const postMaterial = async (req, res) => {
-  // @ts-ignore
-  const { userID } = req.body;
-
-  // tslint:disable-next-line:no-shadowed-variable
-  const fileToBlob = async (file) => new Blob([new Uint8Array(await file.arrayBuffer())], {type: file.type });
   try {
+    // @ts-ignore
+    const { userID } = req.params.id;
+    const file = req.file;
+
     const userRepo = await getRepository(User);
-    const user = await userRepo.findOneOrFail(userID, { relations: ['materials'] });
+    const user = await userRepo.findOneOrFail(userID, {relations: ['materials']});
+
     const materialRepo = await getRepository(Material);
-    if (user.role !== 'prof') {
-      throw ('User does not have permissions to create a course');
-    }
+
     const material = new Material();
-    const materialContentRepo = await getRepository(MaterialContent);
+    material.type = file.mimetype;
+    material.name = file.originalname;
+    const content = new MaterialContent();
+    content.content = file.buffer;
+    content.createdAt = new Date();
+    content.modifiedAt = new Date();
+    material.materialContent = content;
     
-    material.type = type;
+    const createdMaterial = await materialRepo.save(material);
+    
+    await user.materials.push(material);
+    await userRepo.save(user);
 
-    material.name = name;
 
-    // @ts-ignore
-    material.materialContent.content = await fileToBlob(req.files, name, { type });
-    // @ts-ignore
-    console.log(await fileToBlob(req.files, name, { type }));
-    // material.materialContent.path = req.filepath;
-    material.materialContent.path = path;
-    await materialContentRepo.save(material.materialContent);
-    user.materials.push(material);
-    const createdUser = await userRepo.save(user);
-    const  createdMaterial =  await materialRepo.save(material);
-    // @ts-ignore
-    res.send({ status: 'success', id: createdUser.courses.pop()?.id});
+    res.send({
+      'status': 'successful',
+      'id': createdMaterial.id
+    })
+
   } catch (error) {
-    // @ts-ignore
-    res.status(500).send({ "error": error });
+    res.send(error)
   }
+
+
+
+  // // tslint:disable-next-line:no-shadowed-variable
+  // const fileToBlob = async (file) => new Blob([new Uint8Array(await file.arrayBuffer())], {type: file.type });
+  // try {
+  //   const userRepo = await getRepository(User);
+  //   const user = await userRepo.findOneOrFail(userID, { relations: ['materials'] });
+  //   const materialRepo = await getRepository(Material);
+  //   if (user.role !== 'prof') {
+  //     throw ('User does not have permissions to create a course');
+  //   }
+  //   const material = new Material();
+  //   const materialContentRepo = await getRepository(MaterialContent);
+
+  //   material.type = type;
+
+  //   material.name = name;
+
+  //   // @ts-ignore
+  //   material.materialContent.content = await fileToBlob(req.files, name, { type });
+  //   // @ts-ignore
+  //   console.log(await fileToBlob(req.files, name, { type }));
+  //   // material.materialContent.path = req.filepath;
+  //   material.materialContent.path = path;
+  //   await materialContentRepo.save(material.materialContent);
+  //   user.materials.push(material);
+  //   const createdUser = await userRepo.save(user);
+  //   const  createdMaterial =  await materialRepo.save(material);
+  //   // @ts-ignore
+  //   res.send({ status: 'success', id: createdUser.courses.pop()?.id});
+  // } catch (error) {
+  //   // @ts-ignore
+  //   res.status(500).send({ "error": error });
+  // }
 };
 export const deleteMaterial = async (req: Request, res: Response) => {
   const id = req.params.id;
