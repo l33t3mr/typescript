@@ -28,7 +28,7 @@ export const getUser = async (req: Request, res: Response) => {
         const userEmail = req.params.email;
 
         const userRepo = await getRepository(User);
-        let user = await userRepo.findOneOrFail({where: {email: userEmail} ,relations: ['materials', 'courses'] });
+        let user = await userRepo.findOneOrFail({ where: { email: userEmail }, relations: ['materials', 'courses'] });
 
         res.status(200).send(JSON.stringify(user))
     } catch (error) {
@@ -74,18 +74,17 @@ export const deleteUser = async (req: Request, res: Response) => {
         const userRepo = await getRepository(User);
         const user = await userRepo.findOneOrFail(id, { relations: ['courses'] });
 
-        if (user.role !== 'prof') {
-            throw ('Only courses belonging to a professor can be deleted');
+        if (user.role === 'prof') {
+            // although cascade is true,  deletion must be manual
+            const courseRepo = await getRepository(Course);
+            user.courses.forEach(async course => {
+                let foundCourse = await courseRepo.findOneOrFail(course);
+                await courseRepo.remove(foundCourse);
+            })
         }
 
 
-        // although cascade is true,  deletion must be manual
-        const courseRepo = await getRepository(Course);
-        user.courses.forEach(async course => {
-            let foundCourse = await courseRepo.findOneOrFail(course);
-            await courseRepo.remove(foundCourse);
-        })
-        
+
         await userRepo.remove(user);
 
         res.send({
