@@ -48,7 +48,7 @@ export class User {
   @Column({ nullable: false })
   dep!: string;
 
-  @OneToMany(() => Material, material => material.user, { cascade: true })
+  @OneToMany(() => Material, material => material.user)
   materials: Material[];
 
   /* 
