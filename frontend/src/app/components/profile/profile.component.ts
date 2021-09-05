@@ -2,6 +2,8 @@ import { NgForm, FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../module';
+import { NbToastrService } from '@nebular/theme';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +17,8 @@ export class ProfileComponent implements OnInit {
   patchError = false;
   error: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private toastrService: NbToastrService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.user = localStorage.getItem('user');
@@ -28,10 +31,18 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser(user: User) {
-      this.httpClient.patch<any>(`http://localhost:2000/api/users/${user.id}`, user).subscribe(null, (err) => {
-        this.patchError = true;
-        this.error = err;
-        console.log(err)
+      this.httpClient.patch<any>(`http://localhost:3000/api/users/${user.id}`, user).subscribe(
+
+        (resp) => {
+            status = 'success';
+            this.toastrService.show("update ", `message hier `, { status });
+            this.router.navigate(['/']);
+        }, 
+        (err) => {
+          this.patchError = true;
+          this.error = err;
+          status = 'danger';
+          this.toastrService.show("Fehler", err , { status });
       });
 
   }

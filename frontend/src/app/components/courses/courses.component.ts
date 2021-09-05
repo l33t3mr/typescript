@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService, NbDialogRef, NbIconConfig, NbDialogService } from '@nebular/theme';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-courses',
@@ -9,24 +10,48 @@ import { NbToastrService, NbDialogRef, NbIconConfig, NbDialogService } from '@ne
 })
 export class CoursesComponent implements OnInit {
 
-  numbers : any[] = []
+  courses : any[] = []
+  user: any;
 
   constructor(private router: Router, private toastrService: NbToastrService,
-    private readonly dialogService: NbDialogService
+    private  dialogService: NbDialogService,
+     private httpClient: HttpClient
 ) { 
-      this.numbers = [0,1,2,3,4];
   }
 
   ngOnInit(): void {
+    this.user = localStorage.getItem('user');
+    this.user = JSON.parse(this.user);
+    this.httpClient.get<any>(`http://localhost:3000/api/courses`)
+      .subscribe(
+        response => {
+            this.courses = Object.keys(response).map(function(index){
+              let course = response[index];
+              return course;
+            });
+        },
+        error => {
+          status = 'danger';
+          this.toastrService.show("Fehler", `Problem beim Laden der Daten`, { status });
+        }
+    )
   }
+  addCourse(courseId : any){
 
-  addCourse(){
-  
-    const iconConfig: NbIconConfig = { icon: "headphones-outline", pack: 'eva' };
-    status = 'success';
-    this.toastrService.show("Test 1", `Test 2 `, { status });
+    this.httpClient.post<any>(`http://localhost:3000/api/courses/${courseId}/students/${this.user.id}`, {})
+      .subscribe(
+        response => {
+                status = 'success';
+                this.toastrService.show("Anmelden", `course wurde angemeldet`, { status });
+                this.router.navigate(['/my-course']);
+                
+        },
+        error => {
+          status = 'danger';
+          this.toastrService.show("Fehler", `Problem beim Entfernen der course`, { status });
+        }
+      )
 
-    this.router.navigate(['/my-course']);
   }
 
 

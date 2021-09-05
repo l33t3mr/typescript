@@ -1,66 +1,29 @@
 
-<app-two-column-layout [leftColumn]="leftColumn" [rightColumn]="rightColumn"></app-two-column-layout>
+<nb-accordion>
+
+  <nb-accordion-item  *ngFor="let course of courses" style="margin-bottom: 2%;">
+    <nb-accordion-item-header>
+       {{course.name}}
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      	
+    	<nb-card>
+			  <nb-card-body>
+			    <div> kurs start : {{course.startsOn}} </div>
+			    <div> maximale Kapazität : {{course.maxCapacity}} </div>
+			    <div> kurs endet : {{course.endsOn}} </div>
+			  </nb-card-body>
+			  <nb-card-footer>
+			  		<div class="d-flex justify-content-end">
+			  	    	<button nbButton outline status="success" (click)="addCourse(course.id)" > <nb-icon icon="star"></nb-icon>beitreten</button>
+			  	   	</div>
+			  </nb-card-footer>
+		</nb-card>
 
 
-<ng-template #leftColumn>
-
-	<nb-accordion>
-
-	  <nb-accordion-item  *ngFor="let number of numbers" style="margin-bottom: 2%;">
-	    <nb-accordion-item-header>
-	      kurse {{number}}
-	    </nb-accordion-item-header>
-	    <nb-accordion-item-body>
-	      	
-	    	<nb-card>
-				  <nb-card-header>Nebula</nb-card-header>
-				  <nb-card-body>
-				    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-				    Originally, nebula was a name for any diffuse astronomical object,
-				    including galaxies beyond the Milky Way.
-				  </nb-card-body>
-				  <nb-card-footer>
-				  		<div class="d-flex justify-content-end">
-				  	    	<button nbButton outline status="success" (click)="addCourse()" > <nb-icon icon="star"></nb-icon>beitreten</button>
-				  	   	</div>
-				  </nb-card-footer>
-			</nb-card>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
 
 
-	    </nb-accordion-item-body>
-	  </nb-accordion-item>
+</nb-accordion>
 
-
-	</nb-accordion>
-</ng-template>
-
-<ng-template #rightColumn>
-	<nb-accordion>
-
-	  <nb-accordion-item  *ngFor="let number of numbers" style="margin-bottom: 2%;">
-	    <nb-accordion-item-header>
-	      kurse {{number}}
-	    </nb-accordion-item-header>
-	    <nb-accordion-item-body>
-	      	
-	    	<nb-card>
-				  <nb-card-header>Nebula</nb-card-header>
-				  <nb-card-body>
-				    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
-				    Originally, nebula was a name for any diffuse astronomical object,
-				    including galaxies beyond the Milky Way.
-				  </nb-card-body>
-				  <nb-card-footer>
-				  		<div class="d-flex justify-content-end">
-				  	    	<button nbButton outline status="success" (click)="addCourse()" > <nb-icon icon="star"></nb-icon>beitreten</button>
-				  	   	</div>
-				  </nb-card-footer>
-			</nb-card>
-
-
-	    </nb-accordion-item-body>
-	  </nb-accordion-item>
-
-
-	</nb-accordion>
-</ng-template>

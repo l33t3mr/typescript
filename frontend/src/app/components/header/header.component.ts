@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit {
   constructor( @Inject(AuthService)  private authService: AuthService, private router: Router , private nbMenuService: NbMenuService) {}
 
  ngOnInit() {
+
+    this.user = localStorage.getItem("user")
+    this.user = JSON.parse(this.user);
+    
     this.nbMenuService.onItemClick()
       .pipe(
         filter(({ tag }) => tag === 'userProfile'),
@@ -34,7 +38,6 @@ export class HeaderComponent implements OnInit {
             this.router.navigate(['/login']);
           }
           if(title == "Profile") this.router.navigate(['/profile']);
-          console.log(`${title} was clicked!`)
       });
   }
 

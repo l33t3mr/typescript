@@ -17,8 +17,8 @@
       
       <nb-action >
         <nb-user 
-            name="Ala Rouis"
-            title="Student"
+            [name]="user?.firstName + ' ' + user?.lastName"
+            [title]="user?.role"
             [nbContextMenu]="Menu"
             nbContextMenuTag="userProfile">
         </nb-user>

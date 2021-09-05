@@ -49,6 +49,7 @@ import { TwoColumnLayoutComponent } from './components/two-column-layout/two-col
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ProfComponent } from './components/prof/prof.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 @NgModule({
@@ -91,8 +92,9 @@ import { ProfComponent } from './components/prof/prof.component';
     NbBadgeModule,
     NbInputModule,
     NbToggleModule,
-    NbDatepickerModule.forRoot(),
+    PdfViewerModule,
     NbDialogModule.forRoot(),
+    NbDatepickerModule.forRoot(),
     NbToastrModule.forRoot({
       position: NbGlobalPhysicalPosition.TOP_RIGHT,
       destroyByClick: true

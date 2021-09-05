@@ -1,0 +1,40 @@
+nb-card{
+	width: 100% ;
+	height: 100%;
+
+
+}
+
+iframe{
+	width: 1000px;
+	height: 500px;
+}
+
+@media screen and (max-width: 600px) {
+      iframe{
+	width: 350px;
+	height: 500px;
+}
+
+}
+
+:host {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.card-row {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+
+.card-col {
+  flex: 1 0 calc(50% - 1rem);
+  margin: 0 0.5rem;
+}
+
+.test{
+width :100%; 
+heigth :100%;
+}

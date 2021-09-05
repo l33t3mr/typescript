@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +8,42 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor( private router: Router) { }
+  user : any ; 
+
+  Tabstatus = {
+    "Home"  : false,
+    "Meine" : false,
+    "Alle"  : false,
+    "Prof"  : false
+  }
+  constructor( private router: Router) { 
+
+  
+  }
 
   ngOnInit(): void {
+    this.user = localStorage.getItem("user")
+    this.user = JSON.parse(this.user);
+    this.router.events.subscribe((val) => {
+      if(val instanceof NavigationStart) {
+        this.Tabstatus["Home"] = false;
+        this.Tabstatus["Meine"] = false;
+        this.Tabstatus["Alle"] = false;
+        this.Tabstatus["Prof"] = false;
+        if(val.url == "/"){
+          this.Tabstatus["Home"] = true;
+        }
+        if(val.url == "/my-course"){
+          this.Tabstatus["Meine"] = true;
+        }
+        if(val.url == "/courses"){
+          this.Tabstatus["Alle"] = true;
+        }
+        if(val.url == "/prof"){
+          this.Tabstatus["Prof"] = true;         
+        }
+      }
+    });
   }
 
 
@@ -20,7 +53,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/my-course']);
     }
     if(e.tabTitle == "Home"){
-      //this.router.navigate(['/']);
+      this.router.navigate(['/']);
     }
     if(e.tabTitle == "Alle Kurse"){
       this.router.navigate(['/courses']);
@@ -30,5 +63,24 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/prof']);
     }
 
+  }
+
+  checkRole(TabName: string): any{
+
+    switch(TabName) {       
+      case "Meine Kurse": {
+        return this.user.role == "student" ? true: false ; 
+      }
+
+      case "Alle Kurse": {
+        return this.user.role == "student" ? true: false ; 
+      }
+
+      case "Prof Ansicht": {
+        return this.user.role == "student" ? false: true ; 
+      }
+
+    }
+    return true;
   }
 }

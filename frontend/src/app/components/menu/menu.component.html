@@ -1,10 +1,10 @@
     <nb-tabset (changeTab)="onTabChange($event)" >
-      <nb-tab tabTitle="Home"> </nb-tab>
+      <nb-tab  [active]="Tabstatus['Home']" tabTitle="Home"> </nb-tab>
       
-      <nb-tab tabTitle="Meine Kurse"> </nb-tab>
+      <nb-tab  [active]="Tabstatus['Meine']" *ngIf="checkRole('Meine Kurse')" tabTitle="Meine Kurse"> </nb-tab>
       
-      <nb-tab tabTitle="Alle Kurse"> </nb-tab>
+      <nb-tab [active]="Tabstatus['Alle']" *ngIf="checkRole('Alle Kurse')" tabTitle="Alle Kurse"> </nb-tab>
 
-      <nb-tab tabTitle="Prof Ansicht"> </nb-tab>
+      <nb-tab [active]="Tabstatus['Prof']" *ngIf="checkRole('Prof Ansicht')" tabTitle="Prof Ansicht"> </nb-tab>
 
     </nb-tabset>

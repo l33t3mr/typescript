@@ -1,1 +1,67 @@
-<p>single-course works!</p>
+<ng-template #dialog let-data let-ref="dialogRef">
+      <nb-card>
+        <nb-card-header>
+          <div class="d-flex justify-content-end">
+            <div (click)="ref.close()">X</div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+
+          <iframe src="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"   width="1000"
+                height="500" ></iframe>
+
+        </nb-card-body>
+      </nb-card>
+      
+</ng-template>
+
+
+<div class="card-row">
+  <div class="card-col">
+    <nb-card size="tiny">
+      <nb-card-header>Tiny card</nb-card-header>
+      <nb-card-body><button nbButton (click)="open(dialog)">Open Dialog</button></nb-card-body>
+    </nb-card>
+    <nb-card size="tiny">
+      <nb-card-header>Tiny card</nb-card-header>
+    </nb-card>
+  </div>
+  <div class="card-col">
+    <nb-card size="medium">
+      <nb-card-header>Medium card</nb-card-header>
+    </nb-card>
+  </div>
+</div>
+
+<div class="card-row">
+  <div class="card-col">
+    <nb-card size="tiny">
+      <nb-card-header>Tiny card</nb-card-header>
+    </nb-card>
+    <nb-card size="tiny">
+      <nb-card-header>Tiny card</nb-card-header>
+    </nb-card>
+  </div>
+  <div class="card-col">
+    <nb-card size="medium">
+      <nb-card-header>Medium card</nb-card-header>
+    </nb-card>
+  </div>
+</div>
+
+<div class="card-row">
+  <div class="card-col">
+    <nb-card size="tiny">
+      <nb-card-header>Tiny card</nb-card-header>
+    </nb-card>
+    <nb-card size="tiny">
+      <nb-card-header>Tiny card</nb-card-header>
+    </nb-card>
+  </div>
+  <div class="card-col">
+    <nb-card size="medium">
+      <nb-card-header>Medium card</nb-card-header>
+    </nb-card>
+  </div>
+</div>
+
