@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
     "Home"  : false,
     "Meine" : false,
     "Alle"  : false,
-    "Prof"  : false
+    "Material"  : false
   }
   constructor( private router: Router) { 
 
@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
         this.Tabstatus["Home"] = false;
         this.Tabstatus["Meine"] = false;
         this.Tabstatus["Alle"] = false;
-        this.Tabstatus["Prof"] = false;
+        this.Tabstatus["Material"] = false;
         if(val.url == "/"){
           this.Tabstatus["Home"] = true;
         }
@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
           this.Tabstatus["Alle"] = true;
         }
         if(val.url == "/prof"){
-          this.Tabstatus["Prof"] = true;         
+          this.Tabstatus["Material"] = true;         
         }
       }
     });
@@ -59,7 +59,7 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/courses']);
     }
 
-    if(e.tabTitle == "Prof Ansicht"){
+    if(e.tabTitle == "Material"){
       this.router.navigate(['/prof']);
     }
 
@@ -69,14 +69,14 @@ export class MenuComponent implements OnInit {
 
     switch(TabName) {       
       case "Meine Kurse": {
-        return this.user.role == "student" ? true: false ; 
+        return true; 
       }
 
       case "Alle Kurse": {
         return this.user.role == "student" ? true: false ; 
       }
 
-      case "Prof Ansicht": {
+      case "Material": {
         return this.user.role == "student" ? false: true ; 
       }
 

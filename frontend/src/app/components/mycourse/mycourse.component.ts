@@ -58,8 +58,24 @@ export class MycourseComponent implements OnInit {
           this.toastrService.show("Fehler", `Problem beim Entfernen der course`, { status });
         }
       )
+  }
 
+  deleteCourse(e: any, courseId : any){
 
+      e.stopPropagation();
+      this.httpClient.delete<any>(`http://localhost:3000/api/courses/${courseId}`)
+      .subscribe(
+        response => {
+                status = 'success';
+                this.toastrService.show("Abmelden", `course wurde abgemeldet`, { status });
+                this.ngOnInit();
+        },
+        error => {
+          status = 'danger';
+          this.toastrService.show("Fehler", `Problem beim Entfernen der course`, { status });
+        }
+      )
+  
   }
 
   getStatus(datum: any){
