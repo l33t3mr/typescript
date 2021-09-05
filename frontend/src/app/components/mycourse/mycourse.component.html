@@ -12,7 +12,7 @@
         <nb-card-body>
           <div class="d-flex justify-content-between">
               kurse endet am {{formateDate(mycourse.endsOn)}}
-              <button nbButton outline status="danger" *ngIf="user.role == 'student'" (click)="abmelden($event, mycourse.id)" >Abmelden</button>
+              <button nbButton outline status="warning" *ngIf="user.role == 'student'" (click)="abmelden($event, mycourse.id)" >Abmelden</button>
           </div>
         </nb-card-body>
       </nb-card>
