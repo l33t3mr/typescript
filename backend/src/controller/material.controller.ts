@@ -3,9 +3,8 @@ import { Material } from '../models/material';
 import { getRepository } from 'typeorm';
 import { User } from '../models/user';
 import { MaterialContent } from '../models/materialContent';
-import { Blob } from 'buffer';
-import { connect } from 'http2';
-import { create } from 'domain';
+import {Course} from "../models/course";
+
 
 export const getMaterials = async (req, res) => {
   try {
@@ -30,26 +29,24 @@ export const getMaterial = async (req, res) => {
 };
 export const patchMaterial = async (req, res) => {
   const id = req.params.id;
-  // @ts-ignore
-  const { type, name, content, path } = req.body;
+  const file = req.file;
+
   try {
     const materialRepo = await getRepository(Material);
     const material = await materialRepo.findOneOrFail(id);
-    const materialContentRepo = await getRepository(MaterialContent);
-    if (type != null) {
-      material.type = type;
-    }
-    if (name != null) {
-      material.name = name;
-    }
-    material.materialContent.content = content;
-    await materialContentRepo.save(material.materialContent);
-    await materialRepo.save(material);
+    material.type = file.mimetype;
+    material.name = file.originalname;
+    const content = new MaterialContent();
+    content.content = file.buffer;
+    content.createdAt = new Date();
+    content.modifiedAt = new Date();
+    material.materialContent = content;
+    const createdMaterial = await materialRepo.save(material);
     // @ts-ignore
-    res.send({ status: 'success' });
+    res.send({ status: 'success', id: createdMaterial.id });
   } catch (error) {
     // @ts-ignore
-    res.status(500).send({ "error": error });
+    res.status(500).send({ error: error });
   }
 };
 
@@ -60,7 +57,7 @@ export const postMaterial = async (req, res) => {
     const file = req.file;
 
     const userRepo = await getRepository(User);
-    const user = await userRepo.findOneOrFail(userID, {relations: ['materials']});
+    const user = await userRepo.findOneOrFail(userID, { relations: ['materials'] });
 
     const materialRepo = await getRepository(Material);
 
@@ -72,62 +69,30 @@ export const postMaterial = async (req, res) => {
     content.createdAt = new Date();
     content.modifiedAt = new Date();
     material.materialContent = content;
-    
+
     const createdMaterial = await materialRepo.save(material);
-    
+
     await user.materials.push(material);
     await userRepo.save(user);
 
-
     res.send({
-      'status': 'successful',
-      'id': createdMaterial.id
-    })
-
+      status: 'successful',
+      // tslint:disable-next-line:object-literal-sort-keys
+      id: createdMaterial.id,
+    });
   } catch (error) {
-    res.send(error)
+    res.send(error);
   }
-
-
-
-  // // tslint:disable-next-line:no-shadowed-variable
-  // const fileToBlob = async (file) => new Blob([new Uint8Array(await file.arrayBuffer())], {type: file.type });
-  // try {
-  //   const userRepo = await getRepository(User);
-  //   const user = await userRepo.findOneOrFail(userID, { relations: ['materials'] });
-  //   const materialRepo = await getRepository(Material);
-  //   if (user.role !== 'prof') {
-  //     throw ('User does not have permissions to create a course');
-  //   }
-  //   const material = new Material();
-  //   const materialContentRepo = await getRepository(MaterialContent);
-
-  //   material.type = type;
-
-  //   material.name = name;
-
-  //   // @ts-ignore
-  //   material.materialContent.content = await fileToBlob(req.files, name, { type });
-  //   // @ts-ignore
-  //   console.log(await fileToBlob(req.files, name, { type }));
-  //   // material.materialContent.path = req.filepath;
-  //   material.materialContent.path = path;
-  //   await materialContentRepo.save(material.materialContent);
-  //   user.materials.push(material);
-  //   const createdUser = await userRepo.save(user);
-  //   const  createdMaterial =  await materialRepo.save(material);
-  //   // @ts-ignore
-  //   res.send({ status: 'success', id: createdUser.courses.pop()?.id});
-  // } catch (error) {
-  //   // @ts-ignore
-  //   res.status(500).send({ "error": error });
-  // }
 };
 export const deleteMaterial = async (req: Request, res: Response) => {
   const id = req.params.id;
   try {
     const materialRepo = await getRepository(Material);
-    const material = await materialRepo.findOneOrFail(id);
+    const material = await materialRepo.findOneOrFail(id, { relations: ['materialContent'] });
+    const materialCoRepo = await getRepository(MaterialContent);
+    //const content = material.materialContent;
+    const content = await materialCoRepo.findOneOrFail(material.materialContent.id);
+    await materialCoRepo.remove(content);
     await materialRepo.remove(material);
     res.send({ status: 'success' });
   } catch (error) {

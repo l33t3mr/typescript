@@ -3,13 +3,10 @@ import * as yup from 'yup';
 import { User } from './user';
 import { MaterialContent } from './materialContent';
 
-export const materialSchema = yup.object().shape(
-  {
-    type: yup.string().required(),
-    name: yup.string().required(),
-
-  }
-);
+export const materialSchema = yup.object().shape({
+  type: yup.string().required(),
+  name: yup.string().required(),
+});
 
 @Entity()
 export class Material {
@@ -22,11 +19,11 @@ export class Material {
   @Column({ nullable: false })
   name!: string;
 
-  @OneToOne(() => MaterialContent, { cascade: true })
+  @OneToOne(() => MaterialContent, { cascade: true, onDelete: 'CASCADE' })
   @JoinColumn()
-  materialContent: MaterialContent
+  materialContent: MaterialContent;
 
-  @ManyToOne(() => User, user => user.materials)
+  @ManyToOne(() => User, (user) => user.materials)
   @JoinColumn()
   user: User;
 }
