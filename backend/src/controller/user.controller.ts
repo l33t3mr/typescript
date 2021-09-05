@@ -7,7 +7,7 @@ export const getUsers = async (req: Request, res: Response) => {
     try {
         const userRepo = await getRepository(User);
         let user = await userRepo.find({ relations: ['materials', 'courses'] });
-
+        console.log("test 1")
         if (user.length != 0) {
             res.status(200).send(JSON.stringify(user));
             return;

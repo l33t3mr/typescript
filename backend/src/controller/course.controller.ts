@@ -157,7 +157,7 @@ export const removeStudent = async (req: Request, res: Response) => {
         }
 
         user.courses = user.courses.filter(course => {
-            course.id !== cID
+            course.id != cID
         })
 
         await userRepo.save(user);
