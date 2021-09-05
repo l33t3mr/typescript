@@ -23,7 +23,7 @@ export class MaterialContent {
     @PrimaryGeneratedColumn()
     id!: string;
 
-    @Column({ type: 'blob', nullable: false })
+    @Column({ type: 'mediumblob', nullable: false })
     content!: Blob;
 
     @CreateDateColumn()
