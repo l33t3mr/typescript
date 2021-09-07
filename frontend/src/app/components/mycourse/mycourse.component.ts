@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-mycourse',
@@ -26,10 +26,14 @@ export class MycourseComponent implements OnInit {
   ngOnInit(): void {
     this.user = localStorage.getItem('user');
     this.user = JSON.parse(this.user);
-    this.httpClient.get<any>(`http://localhost:3000/api/users/${this.user.email}`)
+    let token = localStorage.getItem('token')
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+    this.httpClient.get<any>(`http://localhost:3000/api/users/${this.user.id}`, requestOptions)
       .subscribe(
         response => {
-          this.myCourses = response.courses;
+          this.myCourses = response.user.courses;
           console.log(this.myCourses)
           
         },
@@ -46,7 +50,11 @@ export class MycourseComponent implements OnInit {
 
   abmelden(e: any, courseId:any){
     e.stopPropagation();
-    this.httpClient.delete<any>(`http://localhost:3000/api/courses/${courseId}/students/${this.user.id}`)
+    let token = localStorage.getItem('token');
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+    this.httpClient.delete<any>(`http://localhost:3000/api/courses/${courseId}/students/${this.user.id}`, requestOptions)
       .subscribe(
         response => {
                 status = 'success';
@@ -63,7 +71,11 @@ export class MycourseComponent implements OnInit {
   deleteCourse(e: any, courseId : any){
 
       e.stopPropagation();
-      this.httpClient.delete<any>(`http://localhost:3000/api/courses/${courseId}`)
+      let token = localStorage.getItem('token');
+      const requestOptions = {                                                                                                                                                                                 
+        headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+      };
+      this.httpClient.delete<any>(`http://localhost:3000/api/courses/${courseId}`,requestOptions)
       .subscribe(
         response => {
                 status = 'success';

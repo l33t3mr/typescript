@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NbDialogService } from '@nebular/theme';
 import { MainComponent } from '../main/main.component';
 
@@ -19,8 +19,11 @@ export class SingleCourseComponent implements OnInit {
     pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
 
   ngOnInit(): void {
-  
-      this.httpClient.get<any>(`http://localhost:3000/api/courses/${this.route.snapshot.params.id}`)
+    let token = localStorage.getItem('token');
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+      this.httpClient.get<any>(`http://localhost:3000/api/courses/${this.route.snapshot.params.id}`, requestOptions)
       .subscribe(
         response => {
             console.log(response)

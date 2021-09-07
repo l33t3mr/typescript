@@ -7,15 +7,16 @@ import { Material } from "../models/material";
 export const getCourses = async (req: Request, res: Response) => {
     try {
         const courseRepo = await getRepository(Course);
-        let course = await courseRepo.find({ relations: ['users'] });
+        let course = await courseRepo.find();
 
+        // TODO: loop course.users and remove each password in it
         if (course.length != 0) {
             res.status(200).send(JSON.stringify(course));
             return;
         }
 
-        res.status(400).send({
-            "error": "No Courses were found"
+        res.status(200).send({
+            "status": "No Courses were found"
         });
     } catch (error) {
         res.status(500).send({
@@ -29,7 +30,7 @@ export const getCourse = async (req: Request, res: Response) => {
         const courseID = req.params.id;
 
         const courseRepo = await getRepository(Course);
-        let course = await courseRepo.findOneOrFail(courseID, { relations: ['users', 'materials'] });
+        let course = await courseRepo.findOneOrFail(courseID, { relations: ['materials'] });
 
         res.status(200).send(JSON.stringify(course))
     } catch (error) {

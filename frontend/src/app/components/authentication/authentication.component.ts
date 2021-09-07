@@ -40,7 +40,7 @@ export class AuthenticationComponent implements OnInit {
   onSubmit(form: NgForm) {
     const email = form.value['email'];
     const password = form.value['password'];
-    this.getUser(email)
+    this.getUser(email, password)
     
   }
 
@@ -48,21 +48,23 @@ export class AuthenticationComponent implements OnInit {
     this.router.navigate(['/registration']);
   }
 
-  getUser(email: string) {
-    this.httpClient.get<any>(`http://localhost:3000/api/users/${email}`)
+  getUser(email: string, password:string) {
+    this.httpClient.post<any>(`http://localhost:3000/api/token`, {email: email, password: password})
       .subscribe(
         response => {
-            this.user = response;
-            localStorage.setItem('user', JSON.stringify(this.user));
+            this.user = response.user;
+            localStorage.setItem('user', JSON.stringify(response.user));
+            localStorage.setItem('token', JSON.stringify(response.token));
+            console.log(response.user)
             this.authService.setIsAuth(true);
             status = 'success';
-            this.toastrService.show("Welcome ", `Hallo lieber ${this.user.firstName}`, { status });
+            this.toastrService.show("Welcome ", `Hallo ${this.user.firstName}`, { status });
             this.router.navigate(['/']);
 
         },
         error => {
           status = 'danger';
-          this.toastrService.show("Fehler", `Hallo lieber ${this.user.firstName}`, { status });
+          this.toastrService.show("Fehler", "Unauthorized", { status });
         }
       )
   }

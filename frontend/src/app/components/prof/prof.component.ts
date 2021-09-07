@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
@@ -18,7 +18,11 @@ export class ProfComponent implements OnInit {
   materials:any[] = [];
 
   ngOnInit(): void {
-    this.httpClient.get<any>(`http://localhost:3000/api/materialContents`).subscribe(
+    let token = localStorage.getItem('token');
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+    this.httpClient.get<any>(`http://localhost:3000/api/materialContents`, requestOptions).subscribe(
         response => {
             this.materials = response.data
           },
@@ -30,7 +34,11 @@ export class ProfComponent implements OnInit {
   }
 
   deleteMaterial(materialId: any){
-this.httpClient.delete<any>(`http://localhost:3000/api/materials/${materialId}`)
+    let token = localStorage.getItem('token');
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+this.httpClient.delete<any>(`http://localhost:3000/api/materials/${materialId}`, requestOptions)
       .subscribe(
         response => {
                 status = 'success';
