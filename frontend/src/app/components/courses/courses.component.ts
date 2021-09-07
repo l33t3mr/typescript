@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbToastrService, NbDialogRef, NbIconConfig, NbDialogService } from '@nebular/theme';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-courses',
@@ -22,7 +22,11 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.user = localStorage.getItem('user');
     this.user = JSON.parse(this.user);
-    this.httpClient.get<any>(`http://localhost:3000/api/courses`)
+    let token = localStorage.getItem('token');
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+    this.httpClient.get<any>(`http://localhost:3000/api/courses`, requestOptions)
       .subscribe(
         response => {
             this.courses = Object.keys(response).map(function(index){
@@ -37,8 +41,11 @@ export class CoursesComponent implements OnInit {
     )
   }
   addCourse(courseId : any){
-
-    this.httpClient.post<any>(`http://localhost:3000/api/courses/${courseId}/students/${this.user.id}`, {})
+    let token = localStorage.getItem('token');
+    const requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+    };
+    this.httpClient.post<any>(`http://localhost:3000/api/courses/${courseId}/students/${this.user.id}`, null, requestOptions)
       .subscribe(
         response => {
                 status = 'success';

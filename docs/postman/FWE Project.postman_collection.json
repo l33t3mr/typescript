@@ -9,10 +9,16 @@
 			"name": "POST Course",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userID\": 20,\n    \"name\": \"testCoursXeX\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 420\n}",
+					"raw": "{\n    \"userID\": 22,\n    \"name\": \"testCoursXeX\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 420\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,8 +46,17 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
@@ -73,7 +88,13 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
@@ -84,7 +105,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/courses/25",
+					"raw": "localhost:3000/api/courses/29",
 					"host": [
 						"localhost"
 					],
@@ -92,7 +113,7 @@
 					"path": [
 						"api",
 						"courses",
-						"25"
+						"29"
 					]
 				}
 			},
@@ -102,10 +123,16 @@
 			"name": "PATCH Course",
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
+					"raw": "{\n    \"userID\": 22,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,7 +140,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/courses/1",
+					"raw": "localhost:3000/api/courses/29",
 					"host": [
 						"localhost"
 					],
@@ -121,7 +148,7 @@
 					"path": [
 						"api",
 						"courses",
-						"1"
+						"29"
 					]
 				}
 			},
@@ -131,7 +158,13 @@
 			"name": "DELETE Course",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"profID\": 13,\n    \"name\": \"testCourse\",\n    \"startsOn\": \"01-09-2021\",\n    \"endsOn\": \"09-09-2021\",\n    \"maxCapacity\": 40\n\n}",
@@ -160,9 +193,15 @@
 			"name": "POST Course Add Student",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"url": {
-					"raw": "localhost:3000/api/courses/25/students/21",
+					"raw": "localhost:3000/api/courses/29/students/23",
 					"host": [
 						"localhost"
 					],
@@ -170,9 +209,9 @@
 					"path": [
 						"api",
 						"courses",
-						"25",
+						"29",
 						"students",
-						"21"
+						"23"
 					]
 				}
 			},
@@ -182,7 +221,13 @@
 			"name": "POST Course Remove Student",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "localhost:3000/api/courses/25/students/21",
 					"host": [
@@ -204,7 +249,13 @@
 			"name": "POST Course Add Material",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "localhost:3000/api/courses/8/materials/1",
 					"host": [
@@ -226,10 +277,16 @@
 			"name": "PATCH User",
 			"request": {
 				"method": "PATCH",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"02-09-2021\",\n    \"dep\": \"XX\"\n}",
+					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"02-09-2021\",\n    \"dep\": \"XX\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -252,13 +309,13 @@
 			"response": []
 		},
 		{
-			"name": "POST User",
+			"name": "Sign Up",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\",\n    \"role\": \"prof\"\n}",
+					"raw": "{\n    \"firstName\": \"Student Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemailstudent\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\",\n    \"role\": \"student\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -281,13 +338,47 @@
 			"response": []
 		},
 		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"testemail\",\n    \"password\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/token",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET User",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjMsImVtYWlsIjoidGVzdGVtYWlsc3R1ZGVudCIsImlhdCI6MTYzMTA0NjExNCwiZXhwIjoxNjMxMDQ5NzE0fQ.ikHn8dkxUUtuCGkLjw5vBxZD26V1NIo_bc9-mEEQfqk",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",
@@ -298,7 +389,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/api/users/1",
+					"raw": "localhost:3000/api/users/23",
 					"host": [
 						"localhost"
 					],
@@ -306,20 +397,26 @@
 					"path": [
 						"api",
 						"users",
-						"1"
+						"23"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "GET Users",
+			"name": "GET Users Copy",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",
@@ -348,7 +445,13 @@
 			"name": "DELETE User",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjIsImVtYWlsIjoidGVzdGVtYWlsIiwiaWF0IjoxNjMxMDQyNjA1LCJleHAiOjE2MzEwNDYyMDV9.E1EVPu0kC3-Z8z8ILURbqLlg8McH9xNZCcWkcOrZQx8",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"firstName\": \"Amr\",\n    \"lastName\": \"Abdou\",\n    \"password\": \"test\",\n    \"email\": \"testemail\",\n    \"address\": \"Testadd\",\n    \"dob\": \"01-09-2021\",\n    \"dep\": \"inf\"\n}",

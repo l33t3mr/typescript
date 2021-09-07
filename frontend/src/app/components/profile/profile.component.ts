@@ -1,6 +1,6 @@
 import { NgForm, FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../module';
 import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
@@ -31,18 +31,22 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser(user: User) {
-      this.httpClient.patch<any>(`http://localhost:3000/api/users/${user.id}`, user).subscribe(
+    let token = localStorage.getItem('token');
+    const requestOptions = {
+      headers: new HttpHeaders({ 'Authorization': token ? JSON.parse(token) : "no token found" })
+    };
+    this.httpClient.patch<any>(`http://localhost:3000/api/users/${user.id}`, user, requestOptions).subscribe(
 
-        (resp) => {
-            status = 'success';
-            this.toastrService.show("update ", `message hier `, { status });
-            this.router.navigate(['/']);
-        }, 
-        (err) => {
-          this.patchError = true;
-          this.error = err;
-          status = 'danger';
-          this.toastrService.show("Fehler", err , { status });
+      (resp) => {
+        status = 'success';
+        this.toastrService.show("update ", `message hier `, { status });
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        this.patchError = true;
+        this.error = err;
+        status = 'danger';
+        this.toastrService.show("Fehler", err, { status });
       });
 
   }
