@@ -14,21 +14,18 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./db-volume:/var/lib/mysql
+      - ./mysql-data/dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
   backend:
-    working_dir: /var/app/backend
-    image: node:16
-    environment: 
-      PORT: 2000
+    build: ./backend
+    environment:
+      PORT: 3000
       DBHOST: db
       DBPORT: 3306
       DBUSER: test
       DBPASSWORD: test
       DBDATABASE: lernen-db
-      NODE_ENV: development
+      NODE_ENV: deployment
     ports:
-      - 2000:2000
-    command: npm start
-    volumes:
-      - ./backend:/var/app/backend
+      - 3000:3000
+  
