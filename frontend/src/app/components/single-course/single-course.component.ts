@@ -52,7 +52,7 @@ export class SingleCourseComponent implements OnInit {
         response => {
           let file = new Blob([response.data.content.data], { type: 'application/pdf' });
           this.pathUrl = 'http://www.orimi.com/pdf-test.pdf';
-          window.open(this.pathUrl);
+          // window.open(this.pathUrl);
 
           //this.pathUrl = response.data.content.data;
           //this.pathUrl = this.getPDF( response.data.content.data)
