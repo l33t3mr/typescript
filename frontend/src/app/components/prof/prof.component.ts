@@ -111,7 +111,7 @@ export class ProfComponent implements OnInit, AfterViewInit {
     const requestOptions = {
       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
     };
-    this.dialogService.open(dialog, { context: {mycourses: this.myCourses , materialId : "555"}  });
+    this.dialogService.open(dialog, {});
 
     /*this.httpClient.get<any>(`http://localhost:3000/api/users/${this.user.id}`, requestOptions)
       .subscribe(
