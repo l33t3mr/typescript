@@ -26,6 +26,7 @@
             - role: student
         
 # Testing
+## Make sure `node_module` and `dist` folders are removed before running the commands
 - For testing:
     - If you're on Linux/Mac, run `start.sh`
     - If you're on windows:

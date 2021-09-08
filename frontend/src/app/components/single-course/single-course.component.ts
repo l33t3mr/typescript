@@ -22,7 +22,9 @@ export class SingleCourseComponent implements OnInit {
   ngOnInit(): void {
     let token = localStorage.getItem('token');
     const requestOptions = {
-      headers: new HttpHeaders({ 'Authorization': token ? JSON.parse(token) : "no token found" })
+      headers: new HttpHeaders({ 
+        'Authorization': token ? JSON.parse(token) : "no token found"
+       })
     };
     this.httpClient.get<any>(`http://localhost:3000/api/courses/${this.route.snapshot.params.id}`, requestOptions)
       .subscribe(
@@ -49,8 +51,8 @@ export class SingleCourseComponent implements OnInit {
       .subscribe(
         response => {
           let file = new Blob([response.data.content.data], { type: 'application/pdf' });
-          this.pathUrl = window.URL.createObjectURL(file);
-          // window.open(this.pathUrl);
+          this.pathUrl = 'http://www.orimi.com/pdf-test.pdf';
+          window.open(this.pathUrl);
 
           //this.pathUrl = response.data.content.data;
           //this.pathUrl = this.getPDF( response.data.content.data)
