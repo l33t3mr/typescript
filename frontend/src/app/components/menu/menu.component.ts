@@ -8,17 +8,17 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  user : any ; 
+  user : any ;
 
   Tabstatus = {
-    "Home"  : false,
+    //"Home"  : false,
     "Meine" : false,
     "Alle"  : false,
     "Material"  : false
   }
-  constructor( private router: Router) { 
+  constructor( private router: Router) {
 
-  
+
   }
 
   ngOnInit(): void {
@@ -26,12 +26,12 @@ export class MenuComponent implements OnInit {
     this.user = JSON.parse(this.user);
     this.router.events.subscribe((val) => {
       if(val instanceof NavigationStart) {
-        this.Tabstatus["Home"] = false;
+        //this.Tabstatus["Home"] = false;
         this.Tabstatus["Meine"] = false;
         this.Tabstatus["Alle"] = false;
         this.Tabstatus["Material"] = false;
         if(val.url == "/"){
-          this.Tabstatus["Home"] = true;
+          this.Tabstatus["Meine"] = true;
         }
         if(val.url == "/my-course"){
           this.Tabstatus["Meine"] = true;
@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
           this.Tabstatus["Alle"] = true;
         }
         if(val.url == "/prof"){
-          this.Tabstatus["Material"] = true;         
+          this.Tabstatus["Material"] = true;
         }
       }
     });
@@ -67,17 +67,17 @@ export class MenuComponent implements OnInit {
 
   checkRole(TabName: string): any{
 
-    switch(TabName) {       
+    switch(TabName) {
       case "Meine Kurse": {
-        return true; 
+        return true;
       }
 
       case "Alle Kurse": {
-        return this.user.role == "student" ? true: false ; 
+        return this.user.role == "student" ? true: false ;
       }
 
       case "Material": {
-        return this.user.role == "student" ? false: true ; 
+        return this.user.role == "student" ? false: true ;
       }
 
     }

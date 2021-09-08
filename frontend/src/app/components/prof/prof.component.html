@@ -1,27 +1,54 @@
 
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <div class="d-flex justify-content-end">
+        <nb-icon icon="close" status="danger" (click)="ref.close()"></nb-icon>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <form (ngSubmit)="onSubmit(Form, data.materialId)" #Form="ngForm">
 
+          <div  *ngFor="let mycourse of data.mycourses">
+            <nb-checkbox status="warning" ngModel name="{{mycourse.id}}" >{{mycourse.name}}</nb-checkbox>
+          </div>
+        <br>
+        <div class="d-flex justify-content-end">
+          <button nbButton status="warning" type="submit">Hinzufügen</button>
+        </div>
+
+      </form>
+    </nb-card-body>
+
+
+  </nb-card>
+</ng-template>
 
 <div class="container">
   <div class="row"  >
+
        <div class="col-lg-4 col-sm-12" >
-                               <button id="add" nbButton outline status="warning" >material Hochladen</button>
-                              
-    </div>
+         <nb-card size="tiny">
+           <nb-card-body>
+             Material details
+           </nb-card-body>
+         </nb-card>
+        </div>
 
     <div class="col-lg-4 col-sm-12" *ngFor="let material of materials">
             <nb-card size="tiny">
                   <nb-card-header>
-                        
+
                         <div class="d-flex justify-content-between">
                               Material-ID {{material.id}}
-                              <nb-icon icon="close" status="danger" (click)="deleteMaterial(material.id)"></nb-icon>
                         </div>
                   </nb-card-header>
                   <nb-card-body>
-                        Material details
+                    <button nbButton fullWidth  status="warning"  (click)="open(dialog, material.id)" style="margin-bottom: 10px;background-color:#c7993c;border-color: #c7993c;">Zu Kursen hinzufügen</button>
+                    <button nbButton fullWidth  status="warning"  (click)="deleteMaterial(material.id)" style="margin-bottom: 10px;background-color:#c7993c;border-color: #c7993c;">Löschen</button>
                   </nb-card-body>
             </nb-card>
     </div>
-  
+
   </div>
 </div>

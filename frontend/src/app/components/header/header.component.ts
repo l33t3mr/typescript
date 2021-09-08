@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
     this.user = localStorage.getItem("user")
     this.user = JSON.parse(this.user);
-    
+
     this.nbMenuService.onItemClick()
       .pipe(
         filter(({ tag }) => tag === 'userProfile'),
@@ -41,12 +41,12 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  Menu: NbMenuItem[] = [ 
+  Menu: NbMenuItem[] = [
     { title: 'Profile' },
     { title: 'Logout' }
   ];
 
-  notification: NbMenuItem[] = [ 
+  notification: NbMenuItem[] = [
     { title: 'benachrichtigung 1' },
     { title: 'benachrichtigung 2' },
     { title: 'benachrichtigung 3' },
@@ -56,6 +56,6 @@ export class HeaderComponent implements OnInit {
   goToProfile(){
     this.router.navigate(['/courses']);
   }
-  
+
 
 }

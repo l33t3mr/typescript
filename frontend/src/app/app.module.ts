@@ -16,10 +16,10 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { 
+import {
   NbThemeModule,
-  NbLayoutModule, 
-  NbCardModule, 
+  NbLayoutModule,
+  NbCardModule,
   NbRouteTabsetModule,
   NbTabsetModule,
   NbMenuModule,
@@ -37,7 +37,8 @@ import {
   NbToggleModule,
   NbDialogModule,
   NbDatepickerModule,
-  NbAlertModule
+  NbAlertModule,
+  NbCheckboxModule
 } from '@nebular/theme';
 
 import { FormsModule }   from '@angular/forms';
@@ -79,7 +80,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     NbLayoutModule,
     NbEvaIconsModule,
     NbRouteTabsetModule,
-    NbCardModule, 
+    NbCardModule,
     NbTabsetModule,
     NbActionsModule,
     NbIconModule,
@@ -93,6 +94,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     NbInputModule,
     NbToggleModule,
     PdfViewerModule,
+    NbCheckboxModule,
     NbDialogModule.forRoot(),
     NbDatepickerModule.forRoot(),
     NbToastrModule.forRoot({
