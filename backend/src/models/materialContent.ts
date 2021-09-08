@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Material } from "./material";
 import * as yup from 'yup';
-import { Blob } from "buffer";
+import { Blob } from "node-fetch";
 
 export const materialContentSchema = yup.object().shape(
     {
@@ -23,8 +23,8 @@ export class MaterialContent {
     @PrimaryGeneratedColumn()
     id!: string;
 
-    @Column({ type: 'mediumblob', nullable: false })
-    content!: Blob;
+    @Column({ type:"mediumblob", nullable: false })
+    content!: Uint8Array;
 
     @CreateDateColumn()
     createdAt: Date;

@@ -2,7 +2,7 @@ import { getRepository, Connection } from "typeorm";
 import { User } from "../models/user";
 import { Request, Response, response } from "express";
 import { Course } from "../models/course";
-import { Authentication } from "../../middleware/authentication";
+import { Authentication } from "../middleware/authentication";
 
 export const getUsers = async (req: Request, res: Response) => {
     try {

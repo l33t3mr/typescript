@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { getUsers, getUser, loginUser, registerUser, patchUser, deleteUser } from '../controller/user.controller';
-import { Authentication } from '../../middleware/authentication';
+import { Authentication } from '../middleware/authentication';
 
 export const userRouter = Router({ mergeParams: true });
 
