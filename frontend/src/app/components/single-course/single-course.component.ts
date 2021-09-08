@@ -12,6 +12,7 @@ import { MainComponent } from '../main/main.component';
 export class SingleCourseComponent implements OnInit {
 
   pathUrl: string="http://www.archeonavale.org/pdf/cordeliere/test.pdf";
+  materials
 
   constructor(private route: ActivatedRoute, private httpClient: HttpClient,
     private dialogService: NbDialogService) { }
@@ -27,24 +28,41 @@ export class SingleCourseComponent implements OnInit {
       .subscribe(
         response => {
             console.log(response)
-          console.log(response.materials)
+          this.materials=response.materials;
         },
         error => {
         }
       )
 
   }
+    getPDF(data) {
+    return  'data:application/pdf;base64,'+data;
+  }
+   open(dialog: TemplateRef<any>, idMatriel) {
+     let token = localStorage.getItem('token');
+     const requestOptions = {
+       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
+     };
+     this.httpClient.get<any>(`http://localhost:3000/api/materialContents/${idMatriel}`, requestOptions)
+       .subscribe(
+         response => {
+           console.log( response.data.content.data)
+           this.pathUrl = response.data.content.data;
 
-   open(dialog: TemplateRef<any>) {
+           //this.pathUrl = response.data.content.data;
+           //this.pathUrl = this.getPDF( response.data.content.data)
+
+           //this.pdfSrc = response.data.content.data
+         },
+         error => {
+         }
+       )
 
     this.dialogService.open(dialog, { context: 'this is some additional data passed to dialog' });
-    this.pathUrl =  'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
+    //this.pathUrl =  'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
   }
 
   change(path){
-
-
-
    var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", path);
         ifrm.style.width = "640px";

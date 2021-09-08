@@ -6,69 +6,23 @@
           </div>
         </nb-card-header>
         <nb-card-body>
-
-          <iframe src="https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf"   width="1000"
+          <iframe [src]="pathUrl"   type="application/pdf" width="1000"
                 height="500" ></iframe>
-
         </nb-card-body>
       </nb-card>
-      
+
 </ng-template>
 
+<div class="container">
+  <div class="row"  >
 
-<div class="card-row">
-  <div class="card-col">
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-      <nb-card-body><button nbButton (click)="open(dialog)">Open Dialog</button></nb-card-body>
-    </nb-card>
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-  </div>
-  <div class="card-col">
-    <nb-card size="medium">
-      <nb-card-header>Medium card</nb-card-header>
-    </nb-card>
+    <div class="col-lg-6 col-sm-12" *ngFor="let material of materials">
+        <nb-card size="tiny">
+          <nb-card-header>Material - {{material.id}}</nb-card-header>
+          <nb-card-body>
+            <button status="warning"  nbButton outline (click)="open(dialog , material.id)" fullWidth>{{material.name}}</button>
+          </nb-card-body>
+        </nb-card>
+    </div>
   </div>
 </div>
-
-<div class="card-row">
-  <div class="card-col">
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-  </div>
-  <div class="card-col">
-     <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-  </div>
-</div>
-
-<div class="card-row">
-  <div class="card-col">
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-  </div>
-  <div class="card-col">
-     <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-    <nb-card size="tiny">
-      <nb-card-header>Tiny card</nb-card-header>
-    </nb-card>
-  </div>
-</div>
-
-

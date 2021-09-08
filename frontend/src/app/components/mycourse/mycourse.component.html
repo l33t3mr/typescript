@@ -4,9 +4,9 @@
       <nb-card (click)="sigleCourse(mycourse.id)" >
         <nb-card-header style="position: relative;">
 
-              <div class="d-flex justify-content-between" *ngIf="user.role == 'prof'">
+              <div class="d-flex justify-content-between" >
                 {{mycourse.name}}
-                <nb-icon icon="trash-2-outline" status="danger" (click)="deleteCourse($event, mycourse.id)"></nb-icon>
+                <nb-icon *ngIf="user.role == 'prof'" icon="trash-2-outline" status="danger" (click)="deleteCourse($event, mycourse.id)"></nb-icon>
               </div>
           <nb-badge [text]="getText(mycourse.startsOn)" [status]="getStatus(mycourse.startsOn)" position="top right"></nb-badge>
         </nb-card-header>

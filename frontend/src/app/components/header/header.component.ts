@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, Inject } from '@angular/core';
-import { NbIconConfig, NbMenuItem, NbTrigger } from '@nebular/theme';
-import { NB_WINDOW, NbMenuService } from '@nebular/theme';
+import { NbMenuItem, NbTrigger } from '@nebular/theme';
+import { NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
 
@@ -27,9 +27,8 @@ export class HeaderComponent implements OnInit {
     this.user = localStorage.getItem("user")
     this.user = JSON.parse(this.user);
 
-    this.nbMenuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'userProfile'),
+   this.nbMenuService.onItemClick()
+      .pipe(filter(({ tag }) => tag === 'userProfile'),
         map(({ item: { title } }) => title),
       )
       .subscribe(title => {

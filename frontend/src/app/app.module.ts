@@ -46,7 +46,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MainComponent } from './components/main/main.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { MycourseComponent } from './components/mycourse/mycourse.component';
-import { TwoColumnLayoutComponent } from './components/two-column-layout/two-column-layout.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ProfComponent } from './components/prof/prof.component';
@@ -67,7 +66,6 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     MainComponent,
     MenuComponent,
     MycourseComponent,
-    TwoColumnLayoutComponent,
     ProfComponent,
 
   ],

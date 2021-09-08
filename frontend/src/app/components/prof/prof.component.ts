@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild , ElementRef , AfterViewInit} from '@angular/core';
+import { Component, OnInit, TemplateRef , AfterViewInit} from '@angular/core';
 import { NbToastrService, NbDialogService } from '@nebular/theme';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -27,6 +27,8 @@ export class ProfComponent implements OnInit, AfterViewInit {
   user: any;
   myCourses:any
   ngOnInit(): void {
+    this.user = localStorage.getItem('user');
+    this.user = JSON.parse(this.user);
     let token = localStorage.getItem('token');
     const requestOptions = {
       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
@@ -129,10 +131,6 @@ export class ProfComponent implements OnInit, AfterViewInit {
       )*/
   }
 
-  onSubmit2(form: NgForm) {
-    console.log(form)
-  }
-
   fileChange(event) {
     let fileList: FileList = event.target.files;
     if(fileList.length > 0) {
@@ -145,7 +143,7 @@ export class ProfComponent implements OnInit, AfterViewInit {
         headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
       };
 
-      this.httpClient.post(`http://localhost:3000/api/materials/${1}`, formData, requestOptions)
+      this.httpClient.post(`http://localhost:3000/api/materials/${this.user.id}`, formData, requestOptions)
         .subscribe(
           data => {
             console.log(data)
