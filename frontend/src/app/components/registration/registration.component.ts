@@ -53,7 +53,6 @@ export class RegistrationComponent implements OnInit {
     this.toggle_4 = ! checked;
   }
   onSubmit(form: NgForm) {
-    console.log(form);
     this.createUser(form.value);
   }
 
@@ -67,7 +66,6 @@ export class RegistrationComponent implements OnInit {
     if (  this.toggle_6 ){
       user.role =  'tutor';
     }
-    console.log(user);
 
     this.httpClient.post<any>(`http://localhost:3000/api/users/`, user).subscribe(
 

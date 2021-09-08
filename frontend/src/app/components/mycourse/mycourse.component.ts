@@ -34,8 +34,6 @@ export class MycourseComponent implements OnInit {
       .subscribe(
         response => {
           this.myCourses = response.user.courses;
-          console.log(this.myCourses)
-
         },
         error => {
           status = 'danger';

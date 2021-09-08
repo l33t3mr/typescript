@@ -33,7 +33,7 @@ export class ProfComponent implements OnInit, AfterViewInit {
     const requestOptions = {
       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
     };
-    this.httpClient.get<any>(`http://localhost:3000/api/materialContents`, requestOptions).subscribe(
+    this.httpClient.get<any>(`http://localhost:3000/api/materials`, requestOptions).subscribe(
         response => {
             this.materials = response.data
           },
@@ -84,18 +84,15 @@ export class ProfComponent implements OnInit, AfterViewInit {
       )
   }
   onSubmit(form: NgForm, materialId: any){
-    console.log("materialId " + materialId)
     let token = localStorage.getItem('token');
     const requestOptions = {
       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
     };
     for (const [key, value] of Object.entries(form.value )) {
       if(value){
-        console.log(key + "  " + value)
         this.httpClient.post<any>(`http://localhost:3000/api/courses/${key}/materials/${materialId}`, null, requestOptions)
           .subscribe(
             response => {
-              console.log(`http://localhost:3000/api/courses/${key}/materials/${materialId}`)
             },
             error => {
               status = 'danger';
@@ -114,7 +111,6 @@ export class ProfComponent implements OnInit, AfterViewInit {
     const requestOptions = {
       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
     };
-    console.log("testt   ttet");
     this.dialogService.open(dialog, { context: {mycourses: this.myCourses , materialId : "555"}  });
 
     /*this.httpClient.get<any>(`http://localhost:3000/api/users/${this.user.id}`, requestOptions)
@@ -135,7 +131,6 @@ export class ProfComponent implements OnInit, AfterViewInit {
     let fileList: FileList = event.target.files;
     if(fileList.length > 0) {
       let file: File = fileList[0];
-      console.log(file)
         let formData:FormData = new FormData();
        formData.append('file', file, file.name);
       let token = localStorage.getItem('token');
@@ -146,7 +141,6 @@ export class ProfComponent implements OnInit, AfterViewInit {
       this.httpClient.post(`http://localhost:3000/api/materials/${this.user.id}`, formData, requestOptions)
         .subscribe(
           data => {
-            console.log(data)
             status = 'success';
             this.toastrService.show( `Material wurde Hinzufügen`,"create Material", { status });
             this.ngOnInit();

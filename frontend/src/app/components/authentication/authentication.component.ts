@@ -55,7 +55,6 @@ export class AuthenticationComponent implements OnInit {
             this.user = response.user;
             localStorage.setItem('user', JSON.stringify(response.user));
             localStorage.setItem('token', JSON.stringify(response.token));
-            console.log(response.user)
             this.authService.setIsAuth(true);
             status = 'success';
             this.toastrService.show("Welcome ", `Hallo ${this.user.firstName}`, { status });

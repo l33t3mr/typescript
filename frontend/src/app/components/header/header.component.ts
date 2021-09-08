@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
 
     this.user = localStorage.getItem("user")
     this.user = JSON.parse(this.user);
-   console.log(this.guests);
    this.nbMenuService.onItemClick()
       .pipe(filter(({ tag }) => tag === 'userProfile'),
         map(({ item: { title } }) => title),

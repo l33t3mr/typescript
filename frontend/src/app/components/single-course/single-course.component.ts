@@ -27,7 +27,6 @@ export class SingleCourseComponent implements OnInit {
       this.httpClient.get<any>(`http://localhost:3000/api/courses/${this.route.snapshot.params.id}`, requestOptions)
       .subscribe(
         response => {
-            console.log(response)
           this.materials=response.materials;
         },
         error => {
@@ -46,7 +45,6 @@ export class SingleCourseComponent implements OnInit {
      this.httpClient.get<any>(`http://localhost:3000/api/materialContents/${idMatriel}`, requestOptions)
        .subscribe(
          response => {
-           console.log( response.data.content.data)
            this.pathUrl = response.data.content.data;
 
            //this.pathUrl = response.data.content.data;
