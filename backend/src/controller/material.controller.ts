@@ -1,9 +1,10 @@
-import { RequestHandler, Request, Response } from 'express';
+import { RequestHandler, Request, Response, response } from 'express';
 import { Material } from '../models/material';
 import { getRepository } from 'typeorm';
 import { User } from '../models/user';
 import { MaterialContent } from '../models/materialContent';
 import {Course} from "../models/course";
+import {Buffer} from 'buffer';
 
 
 export const getMaterials = async (req, res) => {
@@ -52,22 +53,29 @@ export const patchMaterial = async (req, res) => {
 
 export const postMaterial = async (req, res) => {
   try {
-    // @ts-ignore
-    const { userID } = req.params.id;
+
+    const userID = req.params.id;
+
     const file = req.file;
 
     const userRepo = await getRepository(User);
-    const user = await userRepo.findOneOrFail(userID, { relations: ['materials'] });
+    const user = await userRepo.findOne(userID, { relations: ['materials'] });
+  
+    if (!user){
+      return res.send('User not found')
+    }
 
     const materialRepo = await getRepository(Material);
 
     const material = new Material();
     material.type = file.mimetype;
     material.name = file.originalname;
+
     const content = new MaterialContent();
-    content.content = file.buffer;
+    content.content = await file.buffer;
     content.createdAt = new Date();
     content.modifiedAt = new Date();
+  
     material.materialContent = content;
 
     const createdMaterial = await materialRepo.save(material);
@@ -81,7 +89,7 @@ export const postMaterial = async (req, res) => {
       id: createdMaterial.id,
     });
   } catch (error) {
-    res.send(error);
+    res.send('Oops! Something went wrong!');
   }
 };
 export const deleteMaterial = async (req: Request, res: Response) => {

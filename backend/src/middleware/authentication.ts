@@ -35,7 +35,6 @@ export class Authentication {
 
     public static async verifyAccess(req: Request, res: Response, next: NextFunction) {
         const jwt = req.get('Authorization');
-        console.log(jwt)
 
         // check if header exists
         if (!jwt) {
@@ -44,7 +43,6 @@ export class Authentication {
 
         const validToken = await Authentication.verifyToken(jwt);
         if (!validToken) {
-            console.log('invalid')
             return res.status(401).send({ 'status': 'unauthorized' });
         }
 

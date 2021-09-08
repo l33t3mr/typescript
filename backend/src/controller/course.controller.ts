@@ -176,7 +176,7 @@ export const removeStudent = async (req: Request, res: Response) => {
 export const addMaterial = async (req: Request, res: Response) => {
     try {
         const cID = req.params.id;
-        const mID = req.params.sid;
+        const mID = req.params.mid;
 
         const courseRepo = await getRepository(Course);
         const course = await courseRepo.findOneOrFail(cID, { relations: ['materials'] });
