@@ -72,7 +72,7 @@ export const postMaterial = async (req, res) => {
     material.name = file.originalname;
 
     const content = new MaterialContent();
-    content.content = await file.buffer;
+    content.content = await file.buffer.toString('base64');
     content.createdAt = new Date();
     content.modifiedAt = new Date();
   

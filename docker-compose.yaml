@@ -26,8 +26,6 @@ services:
       DBPASSWORD: test
       DBDATABASE: lernen-db
       NODE_ENV: deployment
-  
-  frontend:
-    build: ./frontend
     ports:
-      - 4200:4200
+      - 3000:3000
+  

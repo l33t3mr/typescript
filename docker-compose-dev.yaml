@@ -31,7 +31,3 @@ services:
     volumes:
       - ./backend/src:/opt/app/src
   
-  frontend:
-    build: ./frontend
-    ports:
-      - 4200:4200

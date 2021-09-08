@@ -13,10 +13,10 @@
 - You can see materials belonging to course by opening it
 - You can manage your own materials directly
 
-# Testing/Developing
+# Development
 - For development use the command `docker-compose up -f docker-compose-dev.yaml up -d`
-- For testing `docker-compose up -d`
-- In both envs, the database is initialized with some data to test.
+
+- Database is initialized with some data to test.
     - Login with Users in the DB:
         - email: max@muster.com
             - password: test
@@ -25,4 +25,21 @@
             - password: test
             - role: student
         
-
+# Testing
+- For testing:
+    - If you're on Linux/Mac, run `start.sh`
+    - If you're on windows:
+    ```
+    docker-compose up -d
+    cd frontend
+    npm install
+    npm start
+    ```
+- Database is initialized with some data to test.
+    - Login with Users in the DB:
+        - email: max@muster.com
+            - password: test
+            - role: prof
+        - email: paula@muster.com
+            - password: test
+            - role: student
