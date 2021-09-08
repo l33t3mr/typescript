@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Inject, Input } from '@angular/core';
 import { NbMenuItem, NbTrigger } from '@nebular/theme';
 import { NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input()
+  guests: string = "";
 
   user: any;
 
@@ -26,7 +28,7 @@ export class HeaderComponent implements OnInit {
 
     this.user = localStorage.getItem("user")
     this.user = JSON.parse(this.user);
-
+   console.log(this.guests);
    this.nbMenuService.onItemClick()
       .pipe(filter(({ tag }) => tag === 'userProfile'),
         map(({ item: { title } }) => title),

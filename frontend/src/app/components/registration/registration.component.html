@@ -1,28 +1,23 @@
-<nb-card size="large">
+<app-header guests="true" ></app-header>
+<br> <br>
+<nb-card >
     <nb-card-body>
 
 
       <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
 
-        <input type="text" id="first_name" name="first_name" class="mb-4" fieldSize="giant" nbInput  status="warning" placeholder="First Name" ngModel ><br>
-        <input type="text" id="last_name" name="last_name" class="mb-4" fieldSize="giant" nbInput  status="warning"   placeholder="Last Name" ngModel ><br>
-        <input [type]="getInputType()"  id="password" name="password" class="mb-4" fieldSize="giant" nbInput  status="warning"  placeholder="Password" ngModel>
-        <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
-          <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
-                   pack="eva"
-                   [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
-          </nb-icon>
-        </button><br>
-        <input type="text" id="email" name="email" class="mb-4" fieldSize="giant" nbInput  status="warning"  placeholder="Email" ngModel>
-        <nb-icon nbSuffix icon="at-outline" pack="eva" ></nb-icon><br>
-        <input type="text" id="address" name="address" class="mb-4" fieldSize="giant" nbInput  status="warning" placeholder="Address" ngModel ><br>
-        <input nbInput placeholder="Pick Date" [nbDatepicker]="dateTimePicker" id="dob" name="dob" class="mb-4" fieldSize="giant" nbInput  status="warning"  ngModel >
+        <input type="text" id="first_name" name="firstName" fullWidth class="mb-4" fieldSize="giant" nbInput  status="warning" placeholder="First Name" ngModel ><br>
+        <input type="text" id="last_name" name="lastName" fullWidth class="mb-4" fieldSize="giant" nbInput  status="warning"   placeholder="Last Name" ngModel ><br>
+        <input [type]="getInputType()"  id="password" fullWidth name="password" class="mb-4" fieldSize="giant" nbInput  status="warning"  placeholder="Password" ngModel>
+
+        <input type="text" id="email" name="email" fullWidth class="mb-4" fieldSize="giant" nbInput  status="warning"  placeholder="Email" ngModel>
+        <input type="text" id="address" fullWidth name="address" class="mb-4" fieldSize="giant" nbInput  status="warning" placeholder="Address" ngModel ><br>
+        <input nbInput placeholder="Pick Date" fullWidth [nbDatepicker]="dateTimePicker" id="dob" name="dob" class="mb-4" fieldSize="giant" nbInput  status="warning"  ngModel >
         <nb-datepicker #dateTimePicker></nb-datepicker><br>
-        <input type="text" id="dep" name="dep" class="mb-4" fieldSize="giant" nbInput  status="warning" placeholder="Department" ngModel ><br>
-        <label>Role:</label><br>
-        <nb-checkbox status="warning" name="role" [(ngModel)]="toggle_4" (checkedChange)="ToggelChange_2($event)" ngModel>Professor  </nb-checkbox><br>
-        <nb-checkbox status="warning" name="role" [(ngModel)]="toggle_5" (checkedChange)="ToggelChange_3($event)" ngModel>Student </nb-checkbox><br>
-        <nb-checkbox status="warning" name="role" [(ngModel)]="toggle_6" (checkedChange)="ToggelChange_4($event)" ngModel>Tutor </nb-checkbox> <br>
+        <input type="text" id="dep" fullWidth name="dep" class="mb-4" fieldSize="giant" nbInput  status="warning" placeholder="Department" ngModel ><br>
+        <nb-checkbox status="warning"  name="role" [(ngModel)]="toggle_4" (checkedChange)="ToggelChange_2($event)" ngModel>Professor  </nb-checkbox>
+        <nb-checkbox status="warning"  name="role" [(ngModel)]="toggle_5" (checkedChange)="ToggelChange_3($event)" ngModel>Student </nb-checkbox>
+        <nb-checkbox status="warning"  name="role" [(ngModel)]="toggle_6" (checkedChange)="ToggelChange_4($event)" ngModel>Tutor </nb-checkbox><br>
         <button nbButton status="warning" type="submit" >register</button>
 
       </form>

@@ -3,7 +3,7 @@
 
 <img  src="assets/Hda_logo.svg">
 <nb-actions >
-      <nb-action 
+      <nb-action  *ngIf="guests != 'true'"
         badgeDot
         badgePosition="top right"
         icon="bell-outline"
@@ -11,16 +11,22 @@
         [nbContextMenu]="notification"
         [nbContextMenuTrigger]="notificationTrigger"
       >
-        
+
       </nb-action>
-      
-      
+
+
       <nb-action >
-        <nb-user 
+        <nb-user *ngIf="guests != 'true'"
             [name]="user?.firstName + ' ' + user?.lastName"
             [title]="user?.role"
             [nbContextMenu]="Menu"
             nbContextMenuTag="userProfile">
+        </nb-user>
+        <nb-user *ngIf="guests == 'true'"
+                 [name]="'guest guest'"
+                 [title]="'guest'"
+
+                 >
         </nb-user>
       </nb-action>
 
