@@ -20,29 +20,30 @@ export class SingleCourseComponent implements OnInit {
 
   ngOnInit(): void {
     let token = localStorage.getItem('token');
-    const requestOptions = {                                                                                                                                                                                 
+    const requestOptions = {
       headers: new HttpHeaders({'Authorization': token ? JSON.parse(token) : "no token found"})
     };
       this.httpClient.get<any>(`http://localhost:3000/api/courses/${this.route.snapshot.params.id}`, requestOptions)
       .subscribe(
         response => {
             console.log(response)
+          console.log(response.materials)
         },
         error => {
         }
       )
-    
+
   }
 
    open(dialog: TemplateRef<any>) {
-    
+
     this.dialogService.open(dialog, { context: 'this is some additional data passed to dialog' });
     this.pathUrl =  'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
   }
 
   change(path){
 
-   
+
 
    var ifrm = document.createElement("iframe");
         ifrm.setAttribute("src", path);
