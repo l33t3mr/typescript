@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9cbfad98-f913-45e8-a8fc-f90d65e96d25",
+		"_postman_id": "91f7d066-9c26-473f-a6a8-f25f0f91bb75",
 		"name": "FWE Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -471,6 +471,244 @@
 						"api",
 						"users",
 						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Materials",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/materials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Material",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"contentType": "",
+							"type": "file",
+							"src": "/home/fwestudent/development/joke-homework/frontend/README.md"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/materials/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materials",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET  Material",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/materials/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materials",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH  Material",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/fwestudent/development/new_lernen_h-da/README.md"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/materials/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materials",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Material",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/materials/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materials",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Material Contents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/materialContents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materialContents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Material Content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0ZW1haWxzdHVkZW50IiwiaWF0IjoxNjMwNDQzMTA5LCJleHAiOjE2MzA0NDY3MDl9.us4NEV8tGq13EzYdCNazlQi92mNx2gKr-mGve08tWfM",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/materialContents/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"materialContents",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
 					]
 				}
 			},
