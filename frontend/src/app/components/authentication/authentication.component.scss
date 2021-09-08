@@ -31,9 +31,9 @@ a:active {
   color: black;
 }
 
-img { width: 50%; height: auto; }
+img { width: 25%; height: auto; }
 
-.test{
+.centerr{
   position: absolute;
   left: 23%;
   top: 20%;
@@ -42,3 +42,17 @@ img { width: 50%; height: auto; }
   /*border: 5px solid black;
   padding-bottom: 20px;*/
 }
+
+nb-card{
+  border: 5px solid black;
+  width: 100%
+}
+
+@media screen and (max-width: 600px) {
+  img { width: 70%; height: auto; }
+  #span{
+    Display: none;
+  }
+}
+
+

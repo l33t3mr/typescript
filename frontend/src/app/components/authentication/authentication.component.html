@@ -1,26 +1,31 @@
-<div class="test">
-	<div >
-		<img src="assets/Hda_logo.svg" >
-		<div class="container">
-		  <div class="center">
-			<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-				<div class="input-group mb-3">
-				  <input type="text" class="form-control" placeholder="Hda Email" name="email" ngModel required>
-				  <div class="input-group-append">
-				    <span class="input-group-text">@stud.h-da.de</span>
-				  </div>
-				</div>
+<div class="centerr">
+    <nb-card>
+      <nb-card-header>
+        <img src="assets/Hda_logo.svg" >
 
-				<div class="form-group">
-				    <input type="password" name="password" class="form-control" id="password" placeholder="Password" ngModel required>
-				</div>
-				
-				<div class="d-flex justify-content-between">
-				    <button type="button" class="btn btn-link" (click)="goToRegistration()">Registration!</button>
-					<button type="submit" class="btn btn-success" [disabled]="f.invalid">Login</button>
-				</div>
-			</form>
-		  </div>
-		</div>
-	</div>
+      </nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Hda Email" name="email" ngModel required>
+            <div class="input-group-append" id="span" >
+              <span class="input-group-text">@stud.h-da.de</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password" ngModel required>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-link" (click)="goToRegistration()">Registration!</button>
+            <button type="submit" class="btn btn-success" [disabled]="f.invalid">Login</button>
+          </div>
+        </form>
+      </nb-card-body>
+      <nb-card-footer>
+        <div class="d-flex justify-content-end">
+        </div>
+      </nb-card-footer>
+    </nb-card>
 </div>

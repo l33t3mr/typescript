@@ -57,6 +57,8 @@ export class HeaderComponent implements OnInit {
   goToProfile(){
     this.router.navigate(['/courses']);
   }
-
+  goToLogin(){
+    this.router.navigate(['/login']);
+  }
 
 }

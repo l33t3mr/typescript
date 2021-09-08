@@ -41,7 +41,7 @@ export class AuthenticationComponent implements OnInit {
     const email = form.value['email'];
     const password = form.value['password'];
     this.getUser(email, password)
-    
+
   }
 
   goToRegistration() {
@@ -68,5 +68,7 @@ export class AuthenticationComponent implements OnInit {
         }
       )
   }
+
+
 
 }
