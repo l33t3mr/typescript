@@ -7,7 +7,7 @@
       </div>
     </nb-card-header>
     <nb-card-body>
-      <form (ngSubmit)="onSubmit(Form, data.materialId)" #Form="ngForm">
+      <form (ngSubmit)="onSubmit(Form, data.materialId);ref.close()" #Form="ngForm">
 
           <div  *ngFor="let mycourse of data.mycourses">
             <nb-checkbox status="warning" ngModel name="{{mycourse.id}}" >{{mycourse.name}}</nb-checkbox>
@@ -33,7 +33,7 @@
     </nb-card-header>
     <nb-card-body>
         <div class="d-flex justify-content-end">
-          <button nbButton status="warning"> Hochladen<input type="file"  (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+          <button nbButton status="warning"> Hochladen<input type="file"  (change)="fileChange($event);ref.close()" placeholder="Upload file" accept=".pdf,.doc,.docx">
           </button>
         </div>
     </nb-card-body>
